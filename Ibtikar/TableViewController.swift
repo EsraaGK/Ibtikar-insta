@@ -47,7 +47,7 @@ class TableViewController: UITableViewController {
         let sharedSession = URLSession.shared
         
         if pageNo == 1 {
-            var results : [Actor] = Array()
+            results = Array()
         }
         
         if let url = URL(string: "https://api.themoviedb.org/3/person/popular?api_key=1a45f741aada87874aacfbeb73119bae&language=en-US&page=\(pageNo)") {
