@@ -19,7 +19,7 @@ class TableViewController: UITableViewController {
     
     @objc func refresh(_ sender:AnyObject) {
         // Code to refresh table view
-        getResponse(pageNo: 1)
+        getResponse(pnumber: 1)
         self.refreshControl!.endRefreshing()
     }
     
@@ -30,7 +30,7 @@ class TableViewController: UITableViewController {
   
         session = URLSession.shared
         task = URLSessionDownloadTask()
-        getResponse(pageNo: ApiPageNo)
+        getResponse(pnumber: ApiPageNo)
         
         self.cache = NSCache()
         
@@ -41,16 +41,18 @@ class TableViewController: UITableViewController {
        
     }
    
-    func getResponse (pageNo :Int){
+    func getResponse (pnumber :Int){
         
         // Obtain Reference to Shared Session
         let sharedSession = URLSession.shared
         
-        if pageNo == 1 {
+        if pnumber == 1 {
+            ApiPageNo = 1
             results = Array()
+         
         }
         
-        if let url = URL(string: "https://api.themoviedb.org/3/person/popular?api_key=1a45f741aada87874aacfbeb73119bae&language=en-US&page=\(pageNo)") {
+        if let url = URL(string: "https://api.themoviedb.org/3/person/popular?api_key=1a45f741aada87874aacfbeb73119bae&language=en-US&page=\(pnumber)") {
             // Create Request
             let request = URLRequest(url: url)
             
@@ -143,12 +145,12 @@ class TableViewController: UITableViewController {
         if indexPath.row == (ApiPageNo * 20 - 7)  && self.ApiPageNo < 500 {
             
              self.ApiPageNo += 1
-        getResponse(pageNo: ApiPageNo)
+        getResponse(pnumber: ApiPageNo)
             
         }
         
         
-        if results[indexPath.row].profile_path! != "noPath" {
+        if results[indexPath.row].profile_path! != "noPath"  && ApiPageNo != 1{
 
             cell.cellImg.image = UIImage(named: "Reverb")
 
