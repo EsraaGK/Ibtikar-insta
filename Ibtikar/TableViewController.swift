@@ -145,50 +145,50 @@ class TableViewController: UITableViewController {
         
         
         if results[indexPath.row].profile_path! != "noPath" {
-//
-//            cell.cellImg.image = UIImage(named: "Reverb")
-//
-//            if (self.cache.object(forKey: (indexPath as NSIndexPath).row as AnyObject) != nil){
-//                // 2
-//                // Use cache
-//                print("Cached image used, no need to download it")
-//                cell.imageView?.image = self.cache.object(forKey: (indexPath as NSIndexPath).row as AnyObject) as? UIImage
-//            }else{
-//                // 3
-//
-//                let url:URL! = URL(string: results[indexPath.row].profile_path!)
-//                task = session.downloadTask(with: url, completionHandler: { (location, response, error) -> Void in
-//                    if let data = try? Data(contentsOf: url){
-//                        // 4
-//                        DispatchQueue.main.async(execute: { () -> Void in
-//                            // 5
-//                            // Before we assign the image, check whether the current cell is visible
-//                            if let updateCell = tableView.cellForRow(at: indexPath) {
-//                                let img:UIImage! = UIImage(data: data)
-//                                updateCell.imageView?.image = img
-//                                self.cache.setObject( img, forKey: (indexPath as NSIndexPath).row as AnyObject)
-//                            }
-//                        })
-//                    }
-//                })
-//                task.resume()
-//            }
-//
+
+            cell.cellImg.image = UIImage(named: "Reverb")
+
+            if (self.cache.object(forKey: (indexPath as NSIndexPath).row as AnyObject) != nil){
+                // 2
+                // Use cache
+                print("Cached image used, no need to download it")
+                cell.cellImg.image = self.cache.object(forKey: (indexPath as NSIndexPath).row as AnyObject) as? UIImage
+            }else{
+                // 3
+
+                let url:URL! = URL(string: results[indexPath.row].profile_path!)
+                task = session.downloadTask(with: url, completionHandler: { (location, response, error) -> Void in
+                    if let data = try? Data(contentsOf: url){
+                        // 4
+                        DispatchQueue.main.async(execute: { () -> Void in
+                            // 5
+                            // Before we assign the image, check whether the current cell is visible
+                            if let updateCell = tableView.cellForRow(at: indexPath) as? TableViewCell {
+                                let img:UIImage! = UIImage(data: data)
+                                updateCell.cellImg.image = img
+                                self.cache.setObject( img, forKey: (indexPath as NSIndexPath).row as AnyObject)
+                            }
+                        })
+                    }
+                })
+                task.resume()
+            }
+
 //            //-------------------------------------
-            if let url = URL(string: results[indexPath.row].profile_path!){
-                            let request = URLRequest(url: url)
-                            let task = URLSession.shared.dataTask(with: request) { data, response, error in
-                                guard let data = data, error == nil else { return }
-                
-                                DispatchQueue.main.async() {
-                
-                                        cell.cellImg.image = UIImage(data: data)
-                
-                                }
-                            }
-                            task.resume()
-                
-                            }
+//            if let url = URL(string: results[indexPath.row].profile_path!){
+//                            let request = URLRequest(url: url)
+//                            let task = URLSession.shared.dataTask(with: request) { data, response, error in
+//                                guard let data = data, error == nil else { return }
+//
+//                                DispatchQueue.main.async() {
+//
+//                                        cell.cellImg.image = UIImage(data: data)
+//
+//                                }
+//                            }
+//                            task.resume()
+//
+//                            }
         }else{
           cell.cellImg.image = UIImage(named:"Reverb")
         }
