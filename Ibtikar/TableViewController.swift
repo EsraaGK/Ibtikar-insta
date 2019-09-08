@@ -8,10 +8,15 @@
 
 import UIKit
 
-class TableViewController: UITableViewController {
+class TableViewController: UITableViewController,UITextFieldDelegate  {
     var results : [Actor] = Array()
     
 
+    @IBOutlet weak var searchTextField: UITextField!
+    var generalURL="https://api.themoviedb.org/3/person/popular?api_key=1a45f741aada87874aacfbeb73119bae&language=en-US&page="
+    
+    
+    
     var task: URLSessionDownloadTask!
     var session: URLSession!
     var cache:NSCache<AnyObject , AnyObject>!
@@ -19,7 +24,7 @@ class TableViewController: UITableViewController {
     
     @objc func refresh(_ sender:AnyObject) {
         // Code to refresh table view
-        getResponse(pnumber: 1)
+        getResponse(pnumber: 1,urlString: generalURL)
         self.refreshControl!.endRefreshing()
     }
     
@@ -27,10 +32,12 @@ class TableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-  
+        
+  searchTextField.delegate=self
         session = URLSession.shared
         task = URLSessionDownloadTask()
-        getResponse(pnumber: ApiPageNo)
+        
+        getResponse(pnumber: ApiPageNo,urlString: generalURL)
         
         self.cache = NSCache()
         
@@ -41,7 +48,7 @@ class TableViewController: UITableViewController {
        
     }
    
-    func getResponse (pnumber :Int){
+    func getResponse (pnumber :Int,urlString:String){
         
         // Obtain Reference to Shared Session
         let sharedSession = URLSession.shared
@@ -51,8 +58,9 @@ class TableViewController: UITableViewController {
             results = Array()
          
         }
-        
-        if let url = URL(string: "https://api.themoviedb.org/3/person/popular?api_key=1a45f741aada87874aacfbeb73119bae&language=en-US&page=\(pnumber)") {
+       
+        let urlApi = urlString + "\(pnumber)"
+        if let url = URL(string:urlApi ) {
             // Create Request
             let request = URLRequest(url: url)
             
@@ -124,6 +132,9 @@ class TableViewController: UITableViewController {
     }
     // MARK: - Table view data source
 
+    
+    
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
@@ -145,7 +156,7 @@ class TableViewController: UITableViewController {
         if indexPath.row == (ApiPageNo * 20 - 7)  && self.ApiPageNo < 500 {
             
              self.ApiPageNo += 1
-        getResponse(pnumber: ApiPageNo)
+        getResponse(pnumber: ApiPageNo,urlString: generalURL)
             
         }
         
@@ -154,11 +165,11 @@ class TableViewController: UITableViewController {
 
             cell.cellImg.image = UIImage(named: "Reverb")
 
-            if (self.cache.object(forKey: (indexPath as NSIndexPath).row as AnyObject) != nil){
+            if (self.cache.object(forKey: (self.results[indexPath.row].profile_path! as AnyObject)) != nil){
                 // 2
                 // Use cache
                 print("Cached image used, no need to download it")
-                cell.cellImg.image = self.cache.object(forKey: (indexPath as NSIndexPath).row as AnyObject) as? UIImage
+                cell.cellImg.image = self.cache.object(forKey: (self.results[indexPath.row].profile_path!) as AnyObject) as? UIImage
             }else{
                 // 3
 
@@ -172,7 +183,7 @@ class TableViewController: UITableViewController {
                             if let updateCell = tableView.cellForRow(at: indexPath) as? TableViewCell {
                                 let img:UIImage! = UIImage(data: data)
                                 updateCell.cellImg.image = img
-                                self.cache.setObject( img, forKey: (indexPath as NSIndexPath).row as AnyObject)
+                                self.cache.setObject( img, forKey: self.results[indexPath.row].profile_path! as AnyObject)
                             }
                         })
                     }
@@ -200,7 +211,7 @@ class TableViewController: UITableViewController {
         }
 
         cell.nameLable.text = results[indexPath.row].name! //as! String
-        print("from cell \(indexPath.row)")
+       // print("from cell \(indexPath.row)")
        // cell.popularityLable.text = "gamal"
         return cell
     }
@@ -229,8 +240,29 @@ class TableViewController: UITableViewController {
     
     
     
+    func textFieldShouldClear(_ textField: UITextField) -> Bool {
+        searchTextField.resignFirstResponder()
+        searchTextField.text=""
+        self.results.removeAll()
+        getResponse(pnumber: ApiPageNo,urlString: generalURL)
+        self.tableView.reloadData()
+
+        
+      return false
+    }
     
-    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if (searchTextField.text?.count)! != 0{
+            
+            var searchURL="https://api.themoviedb.org/3/search/person?api_key=1a45f741aada87874aacfbeb73119bae&query=" + searchTextField.text!+"&page="
+           self.results.removeAll()
+            
+            //getSearchResponse(pnumber: ApiPageNo, url: searchURL)
+            getResponse(pnumber: ApiPageNo, urlString: searchURL)
+        }
+        self.tableView.reloadData()
+        return true
+    }
     
     /*
     // Override to support conditional editing of the table view.
