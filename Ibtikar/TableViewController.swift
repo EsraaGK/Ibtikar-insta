@@ -13,7 +13,12 @@ class TableViewController: UITableViewController,UITextFieldDelegate  {
     
 
     @IBOutlet weak var searchTextField: UITextField!
-    var generalURL="https://api.themoviedb.org/3/person/popular?api_key=1a45f741aada87874aacfbeb73119bae&language=en-US&page="
+    var generalURL="https://api.themoviedb.org/3/person/popular?api_key=1a45f741aada87874aacfbeb73119bae&language=en-US"
+    
+    
+    var searchURL="https://api.themoviedb.org/3/search/person?api_key=1a45f741aada87874aacfbeb73119bae&query="
+    var searchFlag = false
+    
     
     
     
@@ -59,7 +64,7 @@ class TableViewController: UITableViewController,UITextFieldDelegate  {
          
         }
        
-        let urlApi = urlString + "\(pnumber)"
+        let urlApi = urlString + "&page=" + "\(pnumber)"
         if let url = URL(string:urlApi ) {
             // Create Request
             let request = URLRequest(url: url)
@@ -153,10 +158,16 @@ class TableViewController: UITableViewController,UITextFieldDelegate  {
 
 //         Configure the cell...
         
-        if indexPath.row == (ApiPageNo * 20 - 7)  && self.ApiPageNo < 500 {
+        if indexPath.row == results.count-7 && self.ApiPageNo < 500 {
             
              self.ApiPageNo += 1
-        getResponse(pnumber: ApiPageNo,urlString: generalURL)
+            if (searchFlag == true) {
+                getResponse(pnumber: ApiPageNo,urlString:searchURL)
+                
+                 }
+             else{
+                  getResponse(pnumber: ApiPageNo,urlString: generalURL)
+                 }
             
         }
         
@@ -244,6 +255,7 @@ class TableViewController: UITableViewController,UITextFieldDelegate  {
         searchTextField.resignFirstResponder()
         searchTextField.text=""
         self.results.removeAll()
+        searchFlag = false
         getResponse(pnumber: ApiPageNo,urlString: generalURL)
         self.tableView.reloadData()
 
@@ -252,17 +264,21 @@ class TableViewController: UITableViewController,UITextFieldDelegate  {
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if (searchTextField.text?.count)! != 0{
-            
-            var searchURL="https://api.themoviedb.org/3/search/person?api_key=1a45f741aada87874aacfbeb73119bae&query=" + searchTextField.text!+"&page="
+//        if (searchTextField.text?.count)! != 0{
+//
+//            var searchURL="https://api.themoviedb.org/3/search/person?api_key=1a45f741aada87874aacfbeb73119bae&query=" + searchTextField.text!+"&page="
            self.results.removeAll()
             
             //getSearchResponse(pnumber: ApiPageNo, url: searchURL)
+            searchURL += searchTextField.text!
+            searchFlag = true
             getResponse(pnumber: ApiPageNo, urlString: searchURL)
-        }
+        
+        
         self.tableView.reloadData()
         return true
     }
+
     
     /*
     // Override to support conditional editing of the table view.
