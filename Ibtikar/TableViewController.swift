@@ -80,6 +80,7 @@ class TableViewController: UITableViewController,UITextFieldDelegate  {
                             let jsonResponse = try JSONSerialization.jsonObject(with: dataResponse , options:[]) as! NSDictionary
                             
                             var x = jsonResponse.value(forKey: "results") as! NSArray
+                            print(x)
                             for n in x {
                                 var tmp = Actor ()
                                 tmp.adult = (n as! NSDictionary ).value(forKey: "adult") as! Bool
@@ -272,7 +273,8 @@ class TableViewController: UITableViewController,UITextFieldDelegate  {
             //getSearchResponse(pnumber: ApiPageNo, url: searchURL)
             searchURL += searchTextField.text!
             searchFlag = true
-            getResponse(pnumber: ApiPageNo, urlString: searchURL)
+            ApiPageNo=1
+            getResponse(pnumber:ApiPageNo, urlString: searchURL)
         
         
         self.tableView.reloadData()
