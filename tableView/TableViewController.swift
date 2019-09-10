@@ -10,26 +10,24 @@ import UIKit
 
 class TableViewController: UITableViewController,UITextFieldDelegate  {
     var results : [Actor] = Array()
+    let tableModel = TableModel()
     
-
     @IBOutlet weak var searchTextField: UITextField!
-    var generalURL="https://api.themoviedb.org/3/person/popular?api_key=1a45f741aada87874aacfbeb73119bae&language=en-US"
-    
+    var peopleURL="https://api.themoviedb.org/3/person/popular?api_key=1a45f741aada87874aacfbeb73119bae&language=en-US"
     
     var searchURL="https://api.themoviedb.org/3/search/person?api_key=1a45f741aada87874aacfbeb73119bae&query="
-    var searchFlag = false
-    
-    
     
     
     var task: URLSessionDownloadTask!
     var session: URLSession!
     var cache:NSCache<AnyObject , AnyObject>!
     var ApiPageNo = 1
-    
+    var totalPagesNo = 0
+    var currentUrl = ""
     @objc func refresh(_ sender:AnyObject) {
         // Code to refresh table view
-        getResponse(pnumber: 1,urlString: generalURL)
+        ApiPageNo = 1
+        getResponse(pnumber: ApiPageNo,urlString: currentUrl)
         self.refreshControl!.endRefreshing()
     }
     
@@ -38,39 +36,39 @@ class TableViewController: UITableViewController,UITextFieldDelegate  {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-  searchTextField.delegate=self
-        session = URLSession.shared
+        searchTextField.delegate=self
+        //    session = URLSession.shared
         task = URLSessionDownloadTask()
         
-        getResponse(pnumber: ApiPageNo,urlString: generalURL)
-        
+        getResponse(pnumber: ApiPageNo,urlString: peopleURL)
+        currentUrl = peopleURL
         self.cache = NSCache()
         
         self.tableView.refreshControl = UIRefreshControl()
         self.refreshControl?.tintColor = UIColor(red:0.16, green:0.68, blue:0.9, alpha:1)
         self.refreshControl?.attributedTitle = NSAttributedString(string: "Pull to refresh")
         self.refreshControl?.addTarget(self, action: #selector(refresh), for: UIControl.Event.valueChanged)
-       
-    }
-   
-    func getResponse (pnumber :Int,urlString:String){
         
-        // Obtain Reference to Shared Session
-        let sharedSession = URLSession.shared
+    }
+    
+    func getResponse (pnumber :Int,urlString:String){
+      
+        // this is made for the pull-to-reload
         
         if pnumber == 1 {
-            ApiPageNo = 1
-            results = Array()
-         
+           
+            results.removeAll()
+            self.tableView.reloadData()
+            
         }
-       
-        let urlApi = urlString + "&page=" + "\(pnumber)"
+        
+        let urlApi = urlString + "&page=\(pnumber)"
         if let url = URL(string:urlApi ) {
             // Create Request
             let request = URLRequest(url: url)
             
             // Create Data Task
-            let dataTask = sharedSession.dataTask(with: request, completionHandler: { (data, response, error) -> Void in
+            let dataTask = URLSession.shared.dataTask(with: request, completionHandler: { (data, response, error) -> Void in
                 
                 if let  dataResponse = data{
                     DispatchQueue.main.async {
@@ -79,10 +77,12 @@ class TableViewController: UITableViewController,UITextFieldDelegate  {
                             //here dataResponse received from a network request
                             let jsonResponse = try JSONSerialization.jsonObject(with: dataResponse , options:[]) as! NSDictionary
                             
-                            var x = jsonResponse.value(forKey: "results") as! NSArray
-                            print(x)
+                            self.totalPagesNo = jsonResponse.value(forKey: "total_pages") as! Int
+                            self.ApiPageNo = jsonResponse.value(forKey: "page") as! Int
+                            let x = jsonResponse.value(forKey: "results") as! NSArray
+                            
                             for n in x {
-                                var tmp = Actor ()
+                                let tmp = Actor ()
                                 tmp.adult = (n as! NSDictionary ).value(forKey: "adult") as! Bool
                                 tmp.name = (n as! NSDictionary ).value(forKey: "name") as! String
                                 tmp.id = (n as! NSDictionary ).value(forKey: "id") as! Int
@@ -113,15 +113,13 @@ class TableViewController: UITableViewController,UITextFieldDelegate  {
                                         temp_film.title = "no path"
                                     }
                                     
-                                    //                                    temp_film.title = (n as! NSDictionary ).value(forKey: "title") as! String
-                                    
                                     tmp.known_for?.append(temp_film)
                                 }
                                 
                                 self.results.append(tmp)
                                 
-                            //    print(tmp.name! as String)
-                               self.tableView.reloadData()
+                                //    print(tmp.name! as String)
+                                self.tableView.reloadData()
                             }
                             // print("\(jsonResponse.value(forKey: "page")!)")
                         } catch let parsingError {
@@ -134,10 +132,10 @@ class TableViewController: UITableViewController,UITextFieldDelegate  {
             
             dataTask.resume()
         }
-       
+        
     }
     // MARK: - Table view data source
-
+    
     
     
     
@@ -145,38 +143,32 @@ class TableViewController: UITableViewController,UITextFieldDelegate  {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         
         return results.count
         
     }
-
+    
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "myCell", for: indexPath) as! TableViewCell
-
-//         Configure the cell...
         
-        if indexPath.row == results.count-7 && self.ApiPageNo < 500 {
+        //         Configure the cell...
+        
+        if indexPath.row == results.count-6 && self.ApiPageNo <= self.totalPagesNo {
             
-             self.ApiPageNo += 1
-            if (searchFlag == true) {
-                getResponse(pnumber: ApiPageNo,urlString:searchURL)
-                
-                 }
-             else{
-                  getResponse(pnumber: ApiPageNo,urlString: generalURL)
-                 }
+            self.ApiPageNo += 1
             
+            getResponse(pnumber: ApiPageNo, urlString: currentUrl)
         }
         
         
-        if results[indexPath.row].profile_path! != "noPath"  && ApiPageNo != 1{
-
+        if results[indexPath.row].profile_path! != "noPath"  {
+            
             cell.cellImg.image = UIImage(named: "Reverb")
-
+            
             if (self.cache.object(forKey: (self.results[indexPath.row].profile_path! as AnyObject)) != nil){
                 // 2
                 // Use cache
@@ -184,9 +176,9 @@ class TableViewController: UITableViewController,UITextFieldDelegate  {
                 cell.cellImg.image = self.cache.object(forKey: (self.results[indexPath.row].profile_path!) as AnyObject) as? UIImage
             }else{
                 // 3
-
+                
                 let url:URL! = URL(string: results[indexPath.row].profile_path!)
-                task = session.downloadTask(with: url, completionHandler: { (location, response, error) -> Void in
+                task = URLSession.shared.downloadTask(with: url, completionHandler: { (location, response, error) -> Void in
                     if let data = try? Data(contentsOf: url){
                         // 4
                         DispatchQueue.main.async(execute: { () -> Void in
@@ -202,53 +194,30 @@ class TableViewController: UITableViewController,UITextFieldDelegate  {
                 })
                 task.resume()
             }
-
-//            //-------------------------------------
-//            if let url = URL(string: results[indexPath.row].profile_path!){
-//                            let request = URLRequest(url: url)
-//                            let task = URLSession.shared.dataTask(with: request) { data, response, error in
-//                                guard let data = data, error == nil else { return }
-//
-//                                DispatchQueue.main.async() {
-//
-//                                        cell.cellImg.image = UIImage(data: data)
-//
-//                                }
-//                            }
-//                            task.resume()
-//
-//                            }
+            
+            
         }else{
-          cell.cellImg.image = UIImage(named:"Reverb")
+            cell.cellImg.image = UIImage(named:"Reverb")
         }
-
+        
         cell.nameLable.text = results[indexPath.row].name! //as! String
-       // print("from cell \(indexPath.row)")
-       // cell.popularityLable.text = "gamal"
+
         return cell
     }
+    
+    
+    
+    
+    
+    override  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 
-  
-    
-    
-    
-  override  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//    let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "myviewcontroller") as!ViewController
-
-//    let viewController = self.storyboard?.instantiateViewController(withIdentifier: "myviewcontroller") as!DetailsViewController
-//    viewController.NavigationActorObj = results[indexPath.row]
-//    viewController.x = 5
-//   print(results[indexPath.row].profile_path!)
-
-    let collectionview = self.storyboard?.instantiateViewController(withIdentifier: "mycollectionview") as!CollectionViewController
-    collectionview.NavActorObj = results[indexPath.row]
-    
-      self.navigationController?.pushViewController( collectionview, animated: true)
-//
+        
+        let collectionview = self.storyboard?.instantiateViewController(withIdentifier: "mycollectionview") as!CollectionViewController
+        collectionview.NavActorObj = results[indexPath.row]
+        
+        self.navigationController?.pushViewController( collectionview, animated: true)
+        //
     }
-    
-    
-    
     
     
     
@@ -256,75 +225,24 @@ class TableViewController: UITableViewController,UITextFieldDelegate  {
         searchTextField.resignFirstResponder()
         searchTextField.text=""
         self.results.removeAll()
-        searchFlag = false
-        getResponse(pnumber: ApiPageNo,urlString: generalURL)
-        self.tableView.reloadData()
-
+        //searchFlag = false
+        currentUrl=peopleURL
+        ApiPageNo = 1
+        getResponse(pnumber: ApiPageNo,urlString: currentUrl)
+      
         
-      return false
+        
+        return false
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-//        if (searchTextField.text?.count)! != 0{
-//
-//            var searchURL="https://api.themoviedb.org/3/search/person?api_key=1a45f741aada87874aacfbeb73119bae&query=" + searchTextField.text!+"&page="
-           self.results.removeAll()
-            
-            //getSearchResponse(pnumber: ApiPageNo, url: searchURL)
-            searchURL += searchTextField.text!
-            searchFlag = true
-            ApiPageNo=1
-            getResponse(pnumber:ApiPageNo, urlString: searchURL)
         
-        
-        self.tableView.reloadData()
-        return true
-    }
-
+        self.results.removeAll()
+        currentUrl = searchURL+searchTextField.text!
     
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
+        ApiPageNo=1
+       getResponse(pnumber:ApiPageNo, urlString: searchURL+searchTextField.text!)
         return true
     }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+    
 }
