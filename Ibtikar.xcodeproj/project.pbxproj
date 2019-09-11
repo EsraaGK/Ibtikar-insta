@@ -19,6 +19,8 @@
 		B19E7768231C0FE8008197EB /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19E7763231C0FE7008197EB /* TableViewController.swift */; };
 		B19E7769231C0FE8008197EB /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19E7764231C0FE8008197EB /* TableViewCell.swift */; };
 		CE6D373F2327EEFC00D080C2 /* TableModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6D373E2327EEFC00D080C2 /* TableModel.swift */; };
+		CE8E68592328D8D500D8DE97 /* CollectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8E68582328D8D500D8DE97 /* CollectionModel.swift */; };
+		CE8E685B2328F09A00D8DE97 /* DownloadImgModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8E685A2328F09A00D8DE97 /* DownloadImgModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +38,8 @@
 		B19E7763231C0FE7008197EB /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		B19E7764231C0FE8008197EB /* TableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		CE6D373E2327EEFC00D080C2 /* TableModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableModel.swift; sourceTree = "<group>"; };
+		CE8E68582328D8D500D8DE97 /* CollectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionModel.swift; sourceTree = "<group>"; };
+		CE8E685A2328F09A00D8DE97 /* DownloadImgModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadImgModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +101,7 @@
 			isa = PBXGroup;
 			children = (
 				B19E7760231C0FE7008197EB /* CollectionViewController.swift */,
+				CE8E68582328D8D500D8DE97 /* CollectionModel.swift */,
 			);
 			path = collectionView;
 			sourceTree = "<group>";
@@ -105,6 +110,7 @@
 			isa = PBXGroup;
 			children = (
 				B19E7761231C0FE7008197EB /* DownloadImgVC.swift */,
+				CE8E685A2328F09A00D8DE97 /* DownloadImgModel.swift */,
 			);
 			path = saveimgView;
 			sourceTree = "<group>";
@@ -181,12 +187,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				B19E7769231C0FE8008197EB /* TableViewCell.swift in Sources */,
+				CE8E685B2328F09A00D8DE97 /* DownloadImgModel.swift in Sources */,
 				CE6D373F2327EEFC00D080C2 /* TableModel.swift in Sources */,
 				B19E7765231C0FE8008197EB /* CollectionViewController.swift in Sources */,
 				B18B96A8231818E1007BB1B8 /* ApiObj.swift in Sources */,
 				B18B969523181885007BB1B8 /* DetailsViewController.swift in Sources */,
 				B19E7768231C0FE8008197EB /* TableViewController.swift in Sources */,
 				B18B969B23181885007BB1B8 /* Ibtikar.xcdatamodeld in Sources */,
+				CE8E68592328D8D500D8DE97 /* CollectionModel.swift in Sources */,
 				B19E7766231C0FE8008197EB /* DownloadImgVC.swift in Sources */,
 				B18B969323181885007BB1B8 /* AppDelegate.swift in Sources */,
 			);

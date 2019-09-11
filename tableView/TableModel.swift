@@ -11,9 +11,24 @@ class TableModel{
     
     var results = [Actor]()
       var totalPagesNo = 0
-      var  ApiPageNo = 0
-  
-    func getJson(pnumber : Int , urlString:String){
+      var  ApiPageNo = 1
+    
+    func search(){
+        results.removeAll()
+        ApiPageNo=1
+       
+        
+    }
+    func removeAllandReload(completionHandler:()->Void){
+        
+     ApiPageNo = 1
+        results.removeAll()
+       
+        completionHandler()
+          print(ApiPageNo)
+    }
+    
+    func getJson(pnumber : Int , urlString:String , completionHandler : @escaping ()->Void){
         // this is made for the pull-to-reload
         
         if pnumber == 1 {
@@ -30,10 +45,10 @@ class TableModel{
             let request = URLRequest(url: url)
             
             // Create Data Task
-            let dataTask = URLSession.shared.dataTask(with: request, completionHandler: { (data, response, error) -> Void in
+            let dataTask = URLSession.shared.dataTask(with: request){ (data, response, error) -> Void in
                 
                 if let  dataResponse = data{
-                    DispatchQueue.main.async {
+                 
                         
                         do{
                             //here dataResponse received from a network request
@@ -74,22 +89,24 @@ class TableModel{
                                         
                                         temp_film.title = "no path"
                                     }
-                                    
+                                  
                                     tmp.known_for?.append(temp_film)
                                 }
                                 
                                 self.results.append(tmp)
-                                
+                                print(tmp.name)
                             //    self.tableView.reloadData()
+                                
                             }
+                            completionHandler()
                             // print("\(jsonResponse.value(forKey: "page")!)")
                         } catch let parsingError {
                             print("Error", parsingError)
                         }
                         
                     }
-                }
-            })
+                
+            }
             
             dataTask.resume()
         }
