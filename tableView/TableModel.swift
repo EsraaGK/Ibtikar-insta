@@ -12,21 +12,57 @@ class TableModel{
     var results = [Actor]()
       var totalPagesNo = 0
       var  ApiPageNo = 1
+     let cache:NSCache<AnyObject , AnyObject>! = NSCache()
     
     func search(){
         results.removeAll()
+        cache.removeAllObjects()
         ApiPageNo=1
-       
-        
     }
+    
     func removeAllandReload(completionHandler:()->Void){
-        
      ApiPageNo = 1
         results.removeAll()
-       
+       cache.removeAllObjects()
         completionHandler()
           print(ApiPageNo)
     }
+    
+    func loadImg(index :Int , completionHandler :@escaping (Data?)->Void){
+        var task: URLSessionDownloadTask! = URLSessionDownloadTask()
+        let session: URLSession!
+       
+       
+        if results[index].profile_path! != "noPath"  {
+        
+            if (cache.object(forKey: (results[index].profile_path! as AnyObject)) != nil){
+                // 2
+                // Use cache
+                print("Cached image used, no need to download it")
+                completionHandler(cache.object(forKey: (results[index].profile_path!) as AnyObject) as? Data)
+               
+            }else{
+                // 3
+               
+                let url:URL! = URL(string:results[index].profile_path!)
+                task = URLSession.shared.downloadTask(with: url, completionHandler: { (location, response, error) -> Void in
+                    if let data = try? Data(contentsOf: url){
+                       // self.cache.setObject( data as AnyObject, forKey: self.results[index].profile_path! as AnyObject)
+                        completionHandler(data)
+                        
+                            }
+                }
+            )}
+                task.resume()
+        }else{
+            completionHandler(nil)
+          //  cell.cellImg.image = UIImage(named:"Reverb")
+        }
+    }
+    
+    
+    
+    
     
     func getJson(pnumber : Int , urlString:String , completionHandler : @escaping ()->Void){
         // this is made for the pull-to-reload

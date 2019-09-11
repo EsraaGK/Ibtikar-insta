@@ -210,7 +210,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="341" height="99.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Zxf-22-R42">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Reverb" translatesAutoresizingMaskIntoConstraints="NO" id="Zxf-22-R42">
                                             <rect key="frame" x="15" y="1" width="60" height="90"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="60" id="9Uz-g8-rs2"/>
@@ -277,4 +277,7 @@
             <point key="canvasLocation" x="-170" y="-255"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Reverb" width="90" height="90"/>
+    </resources>
 </document>

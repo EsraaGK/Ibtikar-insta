@@ -18,9 +18,9 @@ class TableViewController: UITableViewController,UITextFieldDelegate  {
     var searchURL="https://api.themoviedb.org/3/search/person?api_key=1a45f741aada87874aacfbeb73119bae&query="
     
     
-    var task: URLSessionDownloadTask!
-    var session: URLSession!
-    var cache:NSCache<AnyObject , AnyObject>!
+//    var task: URLSessionDownloadTask!
+//    var session: URLSession!
+//    var cache:NSCache<AnyObject , AnyObject>!
     var ApiPageNo = 1
     var totalPagesNo = 0
     var currentUrl = ""
@@ -34,9 +34,9 @@ class TableViewController: UITableViewController,UITextFieldDelegate  {
             
             self.tableView.reloadData()
             
-            tableModel.getJson(pnumber: ApiPageNo,urlString: currentUrl){
+            tableModel.getJson(pnumber: 1, urlString: currentUrl){
                 DispatchQueue.main.async {
-                    
+                    print("hi")
                     self.tableView.reloadData()
                     
                 }
@@ -53,7 +53,7 @@ class TableViewController: UITableViewController,UITextFieldDelegate  {
         
         searchTextField.delegate=self
         //    session = URLSession.shared
-        task = URLSessionDownloadTask()
+     
         
         tableModel.getJson(pnumber: ApiPageNo,urlString: peopleURL){
             self.ApiPageNo = self.tableModel.ApiPageNo
@@ -65,7 +65,7 @@ class TableViewController: UITableViewController,UITextFieldDelegate  {
             
         }
         currentUrl = peopleURL
-        self.cache = NSCache()
+          
         
         self.tableView.refreshControl = UIRefreshControl()
         self.refreshControl?.tintColor = UIColor(red:0.16, green:0.68, blue:0.9, alpha:1)
@@ -91,7 +91,7 @@ class TableViewController: UITableViewController,UITextFieldDelegate  {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "myCell", for: indexPath) as! TableViewCell
         
-        //         Configure the cell...
+      //load more
         
         if indexPath.row == self.tableModel.results.count-7 && self.ApiPageNo <= self.totalPagesNo {
             self.ApiPageNo += 1
@@ -103,42 +103,55 @@ class TableViewController: UITableViewController,UITextFieldDelegate  {
         }
         
         
-        
-        
-        if self.tableModel.results[indexPath.row].profile_path! != "noPath"  {
-            
-            cell.cellImg.image = UIImage(named: "Reverb")
-            
-            if (self.cache.object(forKey: (self.tableModel.results[indexPath.row].profile_path! as AnyObject)) != nil){
-                // 2
-                // Use cache
-                print("Cached image used, no need to download it")
-                cell.cellImg.image = self.cache.object(forKey: (self.tableModel.results[indexPath.row].profile_path!) as AnyObject) as? UIImage
-            }else{
-                // 3
-                
-                let url:URL! = URL(string: self.tableModel.results[indexPath.row].profile_path!)
-                task = URLSession.shared.downloadTask(with: url, completionHandler: { (location, response, error) -> Void in
-                    if let data = try? Data(contentsOf: url){
-                        // 4
-                        DispatchQueue.main.async(execute: { () -> Void in
-                            // 5
-                            // Before we assign the image, check whether the current cell is visible
-                            if let updateCell = tableView.cellForRow(at: indexPath) as? TableViewCell {
-                                let img:UIImage! = UIImage(data: data)
-                                updateCell.cellImg.image = img
-                                self.cache.setObject( img, forKey: self.tableModel.results[indexPath.row].profile_path! as AnyObject)
-                            }
-                        })
+          //         Configure the cell...
+        tableModel.loadImg(index: indexPath.row, completionHandler: {
+            myData in
+            if let data = myData{
+                DispatchQueue.main.async {
+                    if let updateCell = tableView.cellForRow(at: indexPath) as? TableViewCell {
+                                                        let img:UIImage! = UIImage(data: data)
+                                                        updateCell.cellImg.image = img
                     }
-                })
-                task.resume()
+                }
+            }else{
+                cell.cellImg.image = UIImage(named:"Reverb")
             }
-            
-            
-        }else{
-            cell.cellImg.image = UIImage(named:"Reverb")
-        }
+        })
+//        
+//        if self.tableModel.results[indexPath.row].profile_path! != "noPath"  {
+//            
+//            cell.cellImg.image = UIImage(named: "Reverb")
+//            
+//            if (self.cache.object(forKey: (self.tableModel.results[indexPath.row].profile_path! as AnyObject)) != nil){
+//                // 2
+//                // Use cache
+//                print("Cached image used, no need to download it")
+//                cell.cellImg.image = self.cache.object(forKey: (self.tableModel.results[indexPath.row].profile_path!) as AnyObject) as? UIImage
+//            }else{
+//                // 3
+//                
+//                let url:URL! = URL(string: self.tableModel.results[indexPath.row].profile_path!)
+//                task = URLSession.shared.downloadTask(with: url, completionHandler: { (location, response, error) -> Void in
+//                    if let data = try? Data(contentsOf: url){
+//                        // 4
+//                        DispatchQueue.main.async(execute: { () -> Void in
+//                            // 5
+//                            // Before we assign the image, check whether the current cell is visible
+//                            if let updateCell = tableView.cellForRow(at: indexPath) as? TableViewCell {
+//                                let img:UIImage! = UIImage(data: data)
+//                                updateCell.cellImg.image = img
+//                                self.cache.setObject( img, forKey: self.tableModel.results[indexPath.row].profile_path! as AnyObject)
+//                            }
+//                        })
+//                    }
+//                })
+//                task.resume()
+//            }
+//            
+//            
+//        }else{
+//            cell.cellImg.image = UIImage(named:"Reverb")
+//        }
         
         cell.nameLable.text = self.tableModel.results[indexPath.row].name! //as! String
         
@@ -186,7 +199,7 @@ class TableViewController: UITableViewController,UITextFieldDelegate  {
         self.tableModel.search()
         currentUrl = searchURL+searchTextField.text!
         ApiPageNo=1
-        tableModel.getJson(pnumber:ApiPageNo, urlString: searchURL+searchTextField.text!){
+        tableModel.getJson(pnumber:ApiPageNo, urlString: searchURL+searchTextField.text!.replacingOccurrences(of: " ", with:"%20")){
             DispatchQueue.main.async {
                 
                 self.tableView.reloadData()
