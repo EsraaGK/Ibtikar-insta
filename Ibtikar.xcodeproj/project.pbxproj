@@ -21,6 +21,10 @@
 		CE6D373F2327EEFC00D080C2 /* TableModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6D373E2327EEFC00D080C2 /* TableModel.swift */; };
 		CE8E68592328D8D500D8DE97 /* CollectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8E68582328D8D500D8DE97 /* CollectionModel.swift */; };
 		CE8E685B2328F09A00D8DE97 /* DownloadImgModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8E685A2328F09A00D8DE97 /* DownloadImgModel.swift */; };
+		CE906A68232A730A00691AFE /* PeopleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE906A67232A730A00691AFE /* PeopleViewController.swift */; };
+		CE906A6B232A79EC00691AFE /* PeopleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE906A69232A79EB00691AFE /* PeopleTableViewCell.swift */; };
+		CE906A6C232A79EC00691AFE /* PeopleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE906A6A232A79EC00691AFE /* PeopleTableViewCell.xib */; };
+		CE906A6E232A7E6100691AFE /* PeopleTableViewCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE906A6D232A7E6100691AFE /* PeopleTableViewCellModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +44,10 @@
 		CE6D373E2327EEFC00D080C2 /* TableModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableModel.swift; sourceTree = "<group>"; };
 		CE8E68582328D8D500D8DE97 /* CollectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionModel.swift; sourceTree = "<group>"; };
 		CE8E685A2328F09A00D8DE97 /* DownloadImgModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadImgModel.swift; sourceTree = "<group>"; };
+		CE906A67232A730A00691AFE /* PeopleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleViewController.swift; sourceTree = "<group>"; };
+		CE906A69232A79EB00691AFE /* PeopleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleTableViewCell.swift; sourceTree = "<group>"; };
+		CE906A6A232A79EC00691AFE /* PeopleTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PeopleTableViewCell.xib; sourceTree = "<group>"; };
+		CE906A6D232A7E6100691AFE /* PeopleTableViewCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleTableViewCellModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +101,10 @@
 				B19E7764231C0FE8008197EB /* TableViewCell.swift */,
 				B19E7763231C0FE7008197EB /* TableViewController.swift */,
 				CE6D373E2327EEFC00D080C2 /* TableModel.swift */,
+				CE906A67232A730A00691AFE /* PeopleViewController.swift */,
+				CE906A69232A79EB00691AFE /* PeopleTableViewCell.swift */,
+				CE906A6A232A79EC00691AFE /* PeopleTableViewCell.xib */,
+				CE906A6D232A7E6100691AFE /* PeopleTableViewCellModel.swift */,
 			);
 			path = tableView;
 			sourceTree = "<group>";
@@ -173,6 +185,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE906A6C232A79EC00691AFE /* PeopleTableViewCell.xib in Resources */,
 				B18B96A02318188C007BB1B8 /* LaunchScreen.storyboard in Resources */,
 				B18B969D2318188C007BB1B8 /* Assets.xcassets in Resources */,
 				B18B969823181885007BB1B8 /* Main.storyboard in Resources */,
@@ -191,6 +204,9 @@
 				CE6D373F2327EEFC00D080C2 /* TableModel.swift in Sources */,
 				B19E7765231C0FE8008197EB /* CollectionViewController.swift in Sources */,
 				B18B96A8231818E1007BB1B8 /* ApiObj.swift in Sources */,
+				CE906A6B232A79EC00691AFE /* PeopleTableViewCell.swift in Sources */,
+				CE906A68232A730A00691AFE /* PeopleViewController.swift in Sources */,
+				CE906A6E232A7E6100691AFE /* PeopleTableViewCellModel.swift in Sources */,
 				B18B969523181885007BB1B8 /* DetailsViewController.swift in Sources */,
 				B19E7768231C0FE8008197EB /* TableViewController.swift in Sources */,
 				B18B969B23181885007BB1B8 /* Ibtikar.xcdatamodeld in Sources */,

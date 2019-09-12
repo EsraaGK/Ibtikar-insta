@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="u0t-bM-ybM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -186,6 +186,46 @@
             </objects>
             <point key="canvasLocation" x="1496.8" y="-255.02248875562222"/>
         </scene>
+        <!--People View Controller-->
+        <scene sceneID="Hak-d2-kEW">
+            <objects>
+                <viewController id="pVs-Vb-1ki" customClass="PeopleViewController" customModule="Ibtikar" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="BtE-LG-tWI">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="100" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Gry-yY-CX6">
+                                <rect key="frame" x="0.0" y="64" width="375" height="667"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <textField key="tableFooterView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" id="7cg-Nl-gRC">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="30"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <nil key="textColor"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <textInputTraits key="textInputTraits"/>
+                                </textField>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="EBT-Hj-74Y" firstAttribute="trailing" secondItem="Gry-yY-CX6" secondAttribute="trailing" id="Atq-bu-U3y"/>
+                            <constraint firstItem="Gry-yY-CX6" firstAttribute="width" secondItem="BtE-LG-tWI" secondAttribute="width" id="M2B-vL-qZd"/>
+                            <constraint firstItem="Gry-yY-CX6" firstAttribute="leading" secondItem="EBT-Hj-74Y" secondAttribute="leading" id="TCT-KO-xjO"/>
+                            <constraint firstItem="Gry-yY-CX6" firstAttribute="height" secondItem="BtE-LG-tWI" secondAttribute="height" id="cYH-gE-fvu"/>
+                            <constraint firstItem="Gry-yY-CX6" firstAttribute="top" secondItem="EBT-Hj-74Y" secondAttribute="top" id="kEA-GD-znB"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="EBT-Hj-74Y"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="bvV-80-Xxq"/>
+                    <connections>
+                        <outlet property="peopleTableView" destination="Gry-yY-CX6" id="rx5-ys-4az"/>
+                        <outlet property="searchTextField" destination="7cg-Nl-gRC" id="BlV-Y3-nI2"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cCg-ws-pWX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="825" y="-949"/>
+        </scene>
         <!--Root View Controller-->
         <scene sceneID="3ep-su-rYT">
             <objects>
@@ -263,13 +303,13 @@
         <!--Navigation Controller-->
         <scene sceneID="MPs-3U-MG6">
             <objects>
-                <navigationController id="u0t-bM-ybM" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="NavController" id="u0t-bM-ybM" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="yHe-XA-4FR">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="kqc-iK-769" kind="relationship" relationship="rootViewController" id="Ing-jN-qgm"/>
+                        <segue destination="pVs-Vb-1ki" kind="relationship" relationship="rootViewController" id="aOk-uW-Phr"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9Do-SV-DAY" userLabel="First Responder" sceneMemberID="firstResponder"/>

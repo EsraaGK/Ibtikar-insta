@@ -16,11 +16,7 @@ class TableViewController: UITableViewController,UITextFieldDelegate  {
     var peopleURL="https://api.themoviedb.org/3/person/popular?api_key=1a45f741aada87874aacfbeb73119bae&language=en-US"
     
     var searchURL="https://api.themoviedb.org/3/search/person?api_key=1a45f741aada87874aacfbeb73119bae&query="
-    
-    
-//    var task: URLSessionDownloadTask!
-//    var session: URLSession!
-//    var cache:NSCache<AnyObject , AnyObject>!
+
     var ApiPageNo = 1
     var totalPagesNo = 0
     var currentUrl = ""
@@ -28,8 +24,6 @@ class TableViewController: UITableViewController,UITextFieldDelegate  {
     @objc func refresh(_ sender:AnyObject) {
         // Code to refresh table view
         ApiPageNo = 1
-        //i had to remove the elements and reload table view to avoid Fatal error: Index out of range
-        
         self.tableModel.removeAllandReload(){
             
             self.tableView.reloadData()
@@ -117,42 +111,6 @@ class TableViewController: UITableViewController,UITextFieldDelegate  {
                 cell.cellImg.image = UIImage(named:"Reverb")
             }
         })
-//        
-//        if self.tableModel.results[indexPath.row].profile_path! != "noPath"  {
-//            
-//            cell.cellImg.image = UIImage(named: "Reverb")
-//            
-//            if (self.cache.object(forKey: (self.tableModel.results[indexPath.row].profile_path! as AnyObject)) != nil){
-//                // 2
-//                // Use cache
-//                print("Cached image used, no need to download it")
-//                cell.cellImg.image = self.cache.object(forKey: (self.tableModel.results[indexPath.row].profile_path!) as AnyObject) as? UIImage
-//            }else{
-//                // 3
-//                
-//                let url:URL! = URL(string: self.tableModel.results[indexPath.row].profile_path!)
-//                task = URLSession.shared.downloadTask(with: url, completionHandler: { (location, response, error) -> Void in
-//                    if let data = try? Data(contentsOf: url){
-//                        // 4
-//                        DispatchQueue.main.async(execute: { () -> Void in
-//                            // 5
-//                            // Before we assign the image, check whether the current cell is visible
-//                            if let updateCell = tableView.cellForRow(at: indexPath) as? TableViewCell {
-//                                let img:UIImage! = UIImage(data: data)
-//                                updateCell.cellImg.image = img
-//                                self.cache.setObject( img, forKey: self.tableModel.results[indexPath.row].profile_path! as AnyObject)
-//                            }
-//                        })
-//                    }
-//                })
-//                task.resume()
-//            }
-//            
-//            
-//        }else{
-//            cell.cellImg.image = UIImage(named:"Reverb")
-//        }
-        
         cell.nameLable.text = self.tableModel.results[indexPath.row].name! //as! String
         
         return cell
@@ -195,11 +153,21 @@ class TableViewController: UITableViewController,UITextFieldDelegate  {
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        
+      ApiPageNo=1
         self.tableModel.search()
-        currentUrl = searchURL+searchTextField.text!
-        ApiPageNo=1
-        tableModel.getJson(pnumber:ApiPageNo, urlString: searchURL+searchTextField.text!.replacingOccurrences(of: " ", with:"%20")){
+        if let query = searchTextField.text{
+            if query == ""{currentUrl = peopleURL}else{
+            currentUrl = searchURL+query
+                      print(currentUrl)
+                         print("the url \(currentUrl)")
+            }
+            
+        }else{
+            currentUrl = peopleURL
+            print("the urlj\(currentUrl = searchURL)")
+        }
+        
+        tableModel.getJson(pnumber:1, urlString: currentUrl.replacingOccurrences(of: " ", with:"%20")){
             DispatchQueue.main.async {
                 
                 self.tableView.reloadData()
@@ -209,3 +177,4 @@ class TableViewController: UITableViewController,UITextFieldDelegate  {
     }
     
 }
+//extension TableViewController :UITableViewDelegate{}
