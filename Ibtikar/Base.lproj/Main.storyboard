@@ -76,7 +76,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3708" y="-268"/>
+            <point key="canvasLocation" x="7247" y="-764"/>
         </scene>
         <!--Download ImgVC-->
         <scene sceneID="cxd-Lt-oyB">
@@ -195,7 +195,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="100" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Gry-yY-CX6">
-                                <rect key="frame" x="0.0" y="64" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="94" width="375" height="573"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <textField key="tableFooterView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" id="7cg-Nl-gRC">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="30"/>
@@ -205,26 +205,40 @@
                                     <textInputTraits key="textInputTraits"/>
                                 </textField>
                             </tableView>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="JKq-Dn-4cA">
+                                <rect key="frame" x="0.0" y="64" width="375" height="30"/>
+                                <color key="backgroundColor" red="1" green="0.70885978540000005" blue="0.8373822689" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="search"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="JKq-Dn-4cA" firstAttribute="leading" secondItem="EBT-Hj-74Y" secondAttribute="leading" id="0Kr-PU-UHn"/>
+                            <constraint firstItem="EBT-Hj-74Y" firstAttribute="trailing" secondItem="JKq-Dn-4cA" secondAttribute="trailing" id="94W-ry-HA7"/>
                             <constraint firstItem="EBT-Hj-74Y" firstAttribute="trailing" secondItem="Gry-yY-CX6" secondAttribute="trailing" id="Atq-bu-U3y"/>
+                            <constraint firstItem="JKq-Dn-4cA" firstAttribute="top" secondItem="EBT-Hj-74Y" secondAttribute="top" id="BtD-eq-8iP"/>
+                            <constraint firstItem="JKq-Dn-4cA" firstAttribute="leading" secondItem="EBT-Hj-74Y" secondAttribute="leading" id="CTa-hY-vou"/>
+                            <constraint firstAttribute="bottom" secondItem="Gry-yY-CX6" secondAttribute="bottom" id="Hgm-Yh-fNX"/>
+                            <constraint firstItem="JKq-Dn-4cA" firstAttribute="trailing" secondItem="EBT-Hj-74Y" secondAttribute="trailing" id="LrZ-fP-IRL"/>
                             <constraint firstItem="Gry-yY-CX6" firstAttribute="width" secondItem="BtE-LG-tWI" secondAttribute="width" id="M2B-vL-qZd"/>
+                            <constraint firstItem="Gry-yY-CX6" firstAttribute="top" secondItem="JKq-Dn-4cA" secondAttribute="bottom" id="Sah-Ao-cJL"/>
                             <constraint firstItem="Gry-yY-CX6" firstAttribute="leading" secondItem="EBT-Hj-74Y" secondAttribute="leading" id="TCT-KO-xjO"/>
-                            <constraint firstItem="Gry-yY-CX6" firstAttribute="height" secondItem="BtE-LG-tWI" secondAttribute="height" id="cYH-gE-fvu"/>
-                            <constraint firstItem="Gry-yY-CX6" firstAttribute="top" secondItem="EBT-Hj-74Y" secondAttribute="top" id="kEA-GD-znB"/>
+                            <constraint firstItem="JKq-Dn-4cA" firstAttribute="top" secondItem="EBT-Hj-74Y" secondAttribute="top" id="qRj-H6-hO2"/>
+                            <constraint firstItem="Gry-yY-CX6" firstAttribute="top" secondItem="JKq-Dn-4cA" secondAttribute="bottom" id="vXt-eA-mbD"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="EBT-Hj-74Y"/>
                     </view>
                     <navigationItem key="navigationItem" id="bvV-80-Xxq"/>
                     <connections>
                         <outlet property="peopleTableView" destination="Gry-yY-CX6" id="rx5-ys-4az"/>
-                        <outlet property="searchTextField" destination="7cg-Nl-gRC" id="BlV-Y3-nI2"/>
+                        <outlet property="searchTextField" destination="JKq-Dn-4cA" id="uqb-o1-cOW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cCg-ws-pWX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="825" y="-949"/>
+            <point key="canvasLocation" x="824.79999999999995" y="-949.47526236881572"/>
         </scene>
         <!--Root View Controller-->
         <scene sceneID="3ep-su-rYT">

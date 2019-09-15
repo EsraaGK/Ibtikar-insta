@@ -17,7 +17,6 @@ class PeopleViewController: UIViewController, UITextFieldDelegate , UITableViewD
     var peopleURL="https://api.themoviedb.org/3/person/popular?api_key=1a45f741aada87874aacfbeb73119bae&language=en-US"
     var searchURL="https://api.themoviedb.org/3/search/person?api_key=1a45f741aada87874aacfbeb73119bae&query="
     
-    let peopleTableViewCell = PeopleTableViewCell()
     var ApiPageNo = 1
     var totalPagesNo = 0
     var currentUrl = ""
@@ -45,11 +44,11 @@ class PeopleViewController: UIViewController, UITextFieldDelegate , UITableViewD
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        let nib = UINib(nibName: "PeopleTableViewCell", bundle: Bundle.main)
+        peopleTableView.register(nib, forCellReuseIdentifier: "PeopleTableViewCell")
+        
         peopleTableView.delegate=self
         peopleTableView.dataSource=self
-        
-        
-        peopleTableView.register(UINib(nibName: "PeopleTableViewCell", bundle: Bundle.main) , forCellReuseIdentifier: "PeopleTableViewCell")
         
         searchTextField.delegate=self
         //    session = URLSession.shared
@@ -77,10 +76,12 @@ class PeopleViewController: UIViewController, UITextFieldDelegate , UITableViewD
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
         
         //         let collectionview = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "mycollectionview") as!CollectionViewController
-        let collectionview = self.storyboard?.instantiateViewController(withIdentifier: "mycollectionview") as!CollectionViewController
-        collectionview.NavActorObj = tableModel.results[indexPath.row]
-        
-        self.navigationController?.pushViewController( collectionview, animated: true)
+        if tableModel.results.count != 0{
+            let collectionview = self.storyboard?.instantiateViewController(withIdentifier: "mycollectionview") as!CollectionViewController
+            collectionview.NavActorObj = tableModel.results[indexPath.row]
+            
+            self.navigationController?.pushViewController( collectionview, animated: true)
+        }
         //
     }
     func textFieldShouldClear(_ textField: UITextField) -> Bool {
@@ -106,6 +107,7 @@ class PeopleViewController: UIViewController, UITextFieldDelegate , UITableViewD
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         ApiPageNo=1
         self.tableModel.search()
+        peopleTableView.reloadData()
         if let query = searchTextField.text{
             if query == ""{currentUrl = peopleURL}else{
                 currentUrl = searchURL+query
@@ -115,7 +117,6 @@ class PeopleViewController: UIViewController, UITextFieldDelegate , UITableViewD
             
         }else{
             currentUrl = peopleURL
-            print("the urlj\(currentUrl = searchURL)")
         }
         
         tableModel.getJson(pnumber:1, urlString: currentUrl.replacingOccurrences(of: " ", with:"%20")){
@@ -137,11 +138,27 @@ extension PeopleViewController: UITableViewDataSource{
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = peopleTableView.dequeueReusableCell(withIdentifier: "PeopleTableViewCell", for: indexPath) as! PeopleTableViewCell
-        print(tableModel.results[indexPath.row].name!+"kkkkkk")
+        
+        if let cell = peopleTableView.dequeueReusableCell(withIdentifier: "PeopleTableViewCell", for: indexPath) as? PeopleTableViewCell{
+            //load more
+            
+            if indexPath.row == self.tableModel.results.count-7 && self.ApiPageNo <= self.totalPagesNo {
+                self.ApiPageNo += 1
+                tableModel.getJson(pnumber: ApiPageNo, urlString: currentUrl){
+                    DispatchQueue.main.async {
+                        self.peopleTableView.reloadData()
+                    }
+                }
+            }
+            
         //configure cell
-        peopleTableViewCell.configure( actorOBJ: tableModel.results[indexPath.row])
+        cell.configure( actorOBJ: tableModel.results[indexPath.row])
+        
         return cell
+        }else{
+            print("can't find cell")
+            return UITableViewCell()
+        }
     }
     
     

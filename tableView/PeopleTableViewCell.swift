@@ -12,7 +12,7 @@ class PeopleTableViewCell: UITableViewCell {
 
     @IBOutlet private weak var peopleImageView: UIImageView!
     
-    @IBOutlet weak var peopleNameLable: UILabel!
+    @IBOutlet weak var ActorNameLable: UILabel!
     
     private var peopleTableViewCellModel = PeopleTableViewCellModel()
     
@@ -27,6 +27,10 @@ class PeopleTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     func configure(actorOBJ :Actor){
+        print(actorOBJ.name!+"mmmmmmmm")
+        ActorNameLable.text = actorOBJ.name! //as! String
+        
+        
         peopleTableViewCellModel.loadImg(stringUrl: actorOBJ.profile_path!, completionHandler: {
             myData in
             if let data = myData{
@@ -41,9 +45,7 @@ class PeopleTableViewCell: UITableViewCell {
                 self.peopleImageView.image = UIImage(named:"Reverb")
             }//else
         })//completion
-        print(actorOBJ.name!+"")
-        peopleNameLable.text = actorOBJ.name! //as! String
-        
+      
     }
     
 }
