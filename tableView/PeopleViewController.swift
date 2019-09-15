@@ -8,34 +8,33 @@
 
 import UIKit
 
-class PeopleViewController: UIViewController, UITextFieldDelegate , UITableViewDelegate{
-
+class PeopleViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate, PeopleTableViewProtocol{
+    func refreshTableView() {
+        peopleTableView.reloadData()
+    }
     
     @IBOutlet weak var peopleTableView: UITableView!
     @IBOutlet weak var searchTextField: UITextField!
-    let tableModel = TableModel()
+    var presenter: PeoplePresenter?
     var peopleURL="https://api.themoviedb.org/3/person/popular?api_key=1a45f741aada87874aacfbeb73119bae&language=en-US"
     var searchURL="https://api.themoviedb.org/3/search/person?api_key=1a45f741aada87874aacfbeb73119bae&query="
     
-    var ApiPageNo = 1
-    var totalPagesNo = 0
+   // var ApiPageNo = 1
+  //  var totalPagesNo = 0
     var currentUrl = ""
     
     @objc func refresh(_ sender:AnyObject) {
         // Code to refresh table view
-        ApiPageNo = 1
-        self.tableModel.removeAllandReload(){
+        presenter!.setApiPageNo(pageNo: 1)
+        self.presenter!.removeAllandReload(){
             
-            peopleTableView.reloadData()
+            presenter!.getObjects(number: 1, urlString: currentUrl){
             
-            tableModel.getJson(pnumber: 1, urlString: currentUrl){
-                DispatchQueue.main.async {
-                    print("hi")
-                    self.peopleTableView.reloadData()
-                    
-                }
+            DispatchQueue.main.async {
+                self.refreshTableView()
+                
             }
-            
+          }
         }
         peopleTableView.refreshControl!.endRefreshing()
     }
@@ -43,7 +42,9 @@ class PeopleViewController: UIViewController, UITextFieldDelegate , UITableViewD
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        presenter = PeoplePresenter(ViewObj: self , ModelObj: TableModel())
+        
         let nib = UINib(nibName: "PeopleTableViewCell", bundle: Bundle.main)
         peopleTableView.register(nib, forCellReuseIdentifier: "PeopleTableViewCell")
         
@@ -53,13 +54,13 @@ class PeopleViewController: UIViewController, UITextFieldDelegate , UITableViewD
         searchTextField.delegate=self
         //    session = URLSession.shared
         
-        
-        tableModel.getJson(pnumber: ApiPageNo,urlString: peopleURL){
-            self.ApiPageNo = self.tableModel.ApiPageNo
-            self.totalPagesNo = self.tableModel.totalPagesNo
+        let apiPageNo = presenter!.getApiPageNo()
+         presenter!.getObjects(number: apiPageNo,urlString: peopleURL){
+//            self.ApiPageNo = self.tableModel.ApiPageNo
+//            self.totalPagesNo = self.tableModel.totalPagesNo
             DispatchQueue.main.async {
                 
-                self.peopleTableView.reloadData()
+                self.refreshTableView()
             }
             
         }
@@ -74,11 +75,10 @@ class PeopleViewController: UIViewController, UITextFieldDelegate , UITableViewD
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
-        
-        //         let collectionview = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "mycollectionview") as!CollectionViewController
-        if tableModel.results.count != 0{
+       let arrayCount = presenter!.getArrayCount()
+        if arrayCount != 0{
             let collectionview = self.storyboard?.instantiateViewController(withIdentifier: "mycollectionview") as!CollectionViewController
-            collectionview.NavActorObj = tableModel.results[indexPath.row]
+            collectionview.NavActorObj = presenter!.getObjectForCell(index: indexPath.row)
             
             self.navigationController?.pushViewController( collectionview, animated: true)
         }
@@ -87,53 +87,52 @@ class PeopleViewController: UIViewController, UITextFieldDelegate , UITableViewD
     func textFieldShouldClear(_ textField: UITextField) -> Bool {
         searchTextField.resignFirstResponder()
         searchTextField.text=""
-        self.tableModel.results.removeAll()
-        
-        currentUrl=peopleURL
-        ApiPageNo = 1
-        tableModel.getJson(pnumber: ApiPageNo,urlString: currentUrl){
-            DispatchQueue.main.async {
-                
-                self.peopleTableView.reloadData()
-            }
+        self.presenter!.removeAllandReload {
             
+            currentUrl=peopleURL
+            presenter!.setApiPageNo(pageNo: 1)
+            presenter!.getObjects(number: 1,urlString: currentUrl){
+                DispatchQueue.main.async {
+                    
+                    self.refreshTableView()
+                }
+                
+            }
         }
-        
-        
         
         return false
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        ApiPageNo=1
-        self.tableModel.search()
-        peopleTableView.reloadData()
-        if let query = searchTextField.text{
-            if query == ""{currentUrl = peopleURL}else{
-                currentUrl = searchURL+query
-                print(currentUrl)
-                print("the url \(currentUrl)")
+        presenter!.setApiPageNo(pageNo: 1)
+        presenter!.removeAllandReload {
+            if let query = searchTextField.text{
+                if query == ""{currentUrl = peopleURL}else{
+                    currentUrl = searchURL+query
+                    print(currentUrl)
+                    print("the url \(currentUrl)")
+                }
+                
+            }else{
+                currentUrl = peopleURL
             }
             
-        }else{
-            currentUrl = peopleURL
-        }
-        
-        tableModel.getJson(pnumber:1, urlString: currentUrl.replacingOccurrences(of: " ", with:"%20")){
-            DispatchQueue.main.async {
-                
-                self.peopleTableView.reloadData()
+            presenter!.getObjects(number: 1, urlString: currentUrl.replacingOccurrences(of: " ", with:"%20")){
+                DispatchQueue.main.async {
+                    
+                    self.peopleTableView.reloadData()
+                }
             }
         }
         return true
     }
-   
+    
 }
 
 
 extension PeopleViewController: UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return tableModel.results.count
+        return presenter!.getArrayCount()
     }
     
     
@@ -141,20 +140,21 @@ extension PeopleViewController: UITableViewDataSource{
         
         if let cell = peopleTableView.dequeueReusableCell(withIdentifier: "PeopleTableViewCell", for: indexPath) as? PeopleTableViewCell{
             //load more
-            
-            if indexPath.row == self.tableModel.results.count-7 && self.ApiPageNo <= self.totalPagesNo {
-                self.ApiPageNo += 1
-                tableModel.getJson(pnumber: ApiPageNo, urlString: currentUrl){
+              var pageNo = self.presenter!.getApiPageNo()
+            let  totalPageNo = self.presenter!.getTotalPageNo()
+            if indexPath.row == presenter!.getArrayCount() - 7 && pageNo <= totalPageNo {
+                pageNo += 1
+                presenter!.getObjects(number: pageNo, urlString: currentUrl){
                     DispatchQueue.main.async {
                         self.peopleTableView.reloadData()
                     }
                 }
             }
             
-        //configure cell
-        cell.configure( actorOBJ: tableModel.results[indexPath.row])
-        
-        return cell
+            //configure cell
+            cell.configure( actorOBJ: presenter!.getObjectForCell(index: indexPath.row))
+            
+            return cell
         }else{
             print("can't find cell")
             return UITableViewCell()

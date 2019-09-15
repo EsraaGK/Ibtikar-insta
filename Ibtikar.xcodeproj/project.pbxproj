@@ -25,6 +25,9 @@
 		CE906A6B232A79EC00691AFE /* PeopleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE906A69232A79EB00691AFE /* PeopleTableViewCell.swift */; };
 		CE906A6C232A79EC00691AFE /* PeopleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE906A6A232A79EC00691AFE /* PeopleTableViewCell.xib */; };
 		CE906A6E232A7E6100691AFE /* PeopleTableViewCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE906A6D232A7E6100691AFE /* PeopleTableViewCellModel.swift */; };
+		CEAF0DFC232E83BE003FE337 /* PeoplePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAF0DFB232E83BE003FE337 /* PeoplePresenter.swift */; };
+		CEAF0DFE232E83EC003FE337 /* PeopleTableViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAF0DFD232E83EC003FE337 /* PeopleTableViewModelProtocol.swift */; };
+		CEAF0E00232E8443003FE337 /* PeopleTableViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAF0DFF232E8443003FE337 /* PeopleTableViewProtocol.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +51,9 @@
 		CE906A69232A79EB00691AFE /* PeopleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleTableViewCell.swift; sourceTree = "<group>"; };
 		CE906A6A232A79EC00691AFE /* PeopleTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PeopleTableViewCell.xib; sourceTree = "<group>"; };
 		CE906A6D232A7E6100691AFE /* PeopleTableViewCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleTableViewCellModel.swift; sourceTree = "<group>"; };
+		CEAF0DFB232E83BE003FE337 /* PeoplePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeoplePresenter.swift; sourceTree = "<group>"; };
+		CEAF0DFD232E83EC003FE337 /* PeopleTableViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleTableViewModelProtocol.swift; sourceTree = "<group>"; };
+		CEAF0DFF232E8443003FE337 /* PeopleTableViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleTableViewProtocol.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,13 +104,13 @@
 		CE6D373B2327EA9C00D080C2 /* tableView */ = {
 			isa = PBXGroup;
 			children = (
-				B19E7764231C0FE8008197EB /* TableViewCell.swift */,
-				B19E7763231C0FE7008197EB /* TableViewController.swift */,
+				CEAF0E01232E93CD003FE337 /* cell */,
+				CEAF0DFA232E8360003FE337 /* old */,
 				CE6D373E2327EEFC00D080C2 /* TableModel.swift */,
 				CE906A67232A730A00691AFE /* PeopleViewController.swift */,
-				CE906A69232A79EB00691AFE /* PeopleTableViewCell.swift */,
-				CE906A6A232A79EC00691AFE /* PeopleTableViewCell.xib */,
-				CE906A6D232A7E6100691AFE /* PeopleTableViewCellModel.swift */,
+				CEAF0DFB232E83BE003FE337 /* PeoplePresenter.swift */,
+				CEAF0DFD232E83EC003FE337 /* PeopleTableViewModelProtocol.swift */,
+				CEAF0DFF232E8443003FE337 /* PeopleTableViewProtocol.swift */,
 			);
 			path = tableView;
 			sourceTree = "<group>";
@@ -125,6 +131,25 @@
 				CE8E685A2328F09A00D8DE97 /* DownloadImgModel.swift */,
 			);
 			path = saveimgView;
+			sourceTree = "<group>";
+		};
+		CEAF0DFA232E8360003FE337 /* old */ = {
+			isa = PBXGroup;
+			children = (
+				B19E7764231C0FE8008197EB /* TableViewCell.swift */,
+				B19E7763231C0FE7008197EB /* TableViewController.swift */,
+			);
+			path = old;
+			sourceTree = "<group>";
+		};
+		CEAF0E01232E93CD003FE337 /* cell */ = {
+			isa = PBXGroup;
+			children = (
+				CE906A69232A79EB00691AFE /* PeopleTableViewCell.swift */,
+				CE906A6A232A79EC00691AFE /* PeopleTableViewCell.xib */,
+				CE906A6D232A7E6100691AFE /* PeopleTableViewCellModel.swift */,
+			);
+			path = cell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -200,17 +225,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				B19E7769231C0FE8008197EB /* TableViewCell.swift in Sources */,
+				CEAF0DFE232E83EC003FE337 /* PeopleTableViewModelProtocol.swift in Sources */,
 				CE8E685B2328F09A00D8DE97 /* DownloadImgModel.swift in Sources */,
 				CE6D373F2327EEFC00D080C2 /* TableModel.swift in Sources */,
 				B19E7765231C0FE8008197EB /* CollectionViewController.swift in Sources */,
 				B18B96A8231818E1007BB1B8 /* ApiObj.swift in Sources */,
 				CE906A6B232A79EC00691AFE /* PeopleTableViewCell.swift in Sources */,
+				CEAF0E00232E8443003FE337 /* PeopleTableViewProtocol.swift in Sources */,
 				CE906A68232A730A00691AFE /* PeopleViewController.swift in Sources */,
 				CE906A6E232A7E6100691AFE /* PeopleTableViewCellModel.swift in Sources */,
 				B18B969523181885007BB1B8 /* DetailsViewController.swift in Sources */,
 				B19E7768231C0FE8008197EB /* TableViewController.swift in Sources */,
 				B18B969B23181885007BB1B8 /* Ibtikar.xcdatamodeld in Sources */,
 				CE8E68592328D8D500D8DE97 /* CollectionModel.swift in Sources */,
+				CEAF0DFC232E83BE003FE337 /* PeoplePresenter.swift in Sources */,
 				B19E7766231C0FE8008197EB /* DownloadImgVC.swift in Sources */,
 				B18B969323181885007BB1B8 /* AppDelegate.swift in Sources */,
 			);

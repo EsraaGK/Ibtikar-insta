@@ -7,7 +7,7 @@
 //
 
 import Foundation
-class TableModel{
+class TableModel: PeopleTableViewModelProtocol{
     
     var results = [Actor]()
       var totalPagesNo = 0
@@ -20,7 +20,7 @@ class TableModel{
         ApiPageNo=1
     }
     
-    func removeAllandReload(completionHandler:()->Void){
+    func removeAllinArray(completionHandler:()->Void){
      ApiPageNo = 1
         results.removeAll()
        cache.removeAllObjects()
@@ -59,9 +59,6 @@ class TableModel{
           //  cell.cellImg.image = UIImage(named:"Reverb")
         }
     }
-    
-    
-    
     
     
     func getJson(pnumber : Int , urlString:String , completionHandler : @escaping ()->Void){
@@ -149,4 +146,11 @@ class TableModel{
         
     }
     
+    func getObjectAtIndex(index:Int)->Actor{
+        return results[index]
+    }
+    func getArrayCount()->Int{
+        return results.count
+    }
 }
+

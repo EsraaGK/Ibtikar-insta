@@ -24,7 +24,7 @@ class TableViewController: UITableViewController,UITextFieldDelegate  {
     @objc func refresh(_ sender:AnyObject) {
         // Code to refresh table view
         ApiPageNo = 1
-        self.tableModel.removeAllandReload(){
+        self.tableModel.removeAllinArray(){
             
             self.tableView.reloadData()
             
