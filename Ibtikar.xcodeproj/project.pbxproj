@@ -28,6 +28,9 @@
 		CEAF0DFC232E83BE003FE337 /* PeoplePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAF0DFB232E83BE003FE337 /* PeoplePresenter.swift */; };
 		CEAF0DFE232E83EC003FE337 /* PeopleTableViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAF0DFD232E83EC003FE337 /* PeopleTableViewModelProtocol.swift */; };
 		CEAF0E00232E8443003FE337 /* PeopleTableViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAF0DFF232E8443003FE337 /* PeopleTableViewProtocol.swift */; };
+		CEBBDC50232F8769009568B8 /* ActorCollectionModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBBDC4F232F8769009568B8 /* ActorCollectionModelProtocol.swift */; };
+		CEBBDC52232F87BE009568B8 /* ActorCollectionViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBBDC51232F87BE009568B8 /* ActorCollectionViewProtocol.swift */; };
+		CEBBDC54232F8B24009568B8 /* ActorPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBBDC53232F8B24009568B8 /* ActorPresenter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +57,9 @@
 		CEAF0DFB232E83BE003FE337 /* PeoplePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeoplePresenter.swift; sourceTree = "<group>"; };
 		CEAF0DFD232E83EC003FE337 /* PeopleTableViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleTableViewModelProtocol.swift; sourceTree = "<group>"; };
 		CEAF0DFF232E8443003FE337 /* PeopleTableViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleTableViewProtocol.swift; sourceTree = "<group>"; };
+		CEBBDC4F232F8769009568B8 /* ActorCollectionModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActorCollectionModelProtocol.swift; sourceTree = "<group>"; };
+		CEBBDC51232F87BE009568B8 /* ActorCollectionViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActorCollectionViewProtocol.swift; sourceTree = "<group>"; };
+		CEBBDC53232F8B24009568B8 /* ActorPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActorPresenter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +126,9 @@
 			children = (
 				B19E7760231C0FE7008197EB /* CollectionViewController.swift */,
 				CE8E68582328D8D500D8DE97 /* CollectionModel.swift */,
+				CEBBDC4F232F8769009568B8 /* ActorCollectionModelProtocol.swift */,
+				CEBBDC51232F87BE009568B8 /* ActorCollectionViewProtocol.swift */,
+				CEBBDC53232F8B24009568B8 /* ActorPresenter.swift */,
 			);
 			path = collectionView;
 			sourceTree = "<group>";
@@ -224,6 +233,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CEBBDC54232F8B24009568B8 /* ActorPresenter.swift in Sources */,
 				B19E7769231C0FE8008197EB /* TableViewCell.swift in Sources */,
 				CEAF0DFE232E83EC003FE337 /* PeopleTableViewModelProtocol.swift in Sources */,
 				CE8E685B2328F09A00D8DE97 /* DownloadImgModel.swift in Sources */,
@@ -231,6 +241,7 @@
 				B19E7765231C0FE8008197EB /* CollectionViewController.swift in Sources */,
 				B18B96A8231818E1007BB1B8 /* ApiObj.swift in Sources */,
 				CE906A6B232A79EC00691AFE /* PeopleTableViewCell.swift in Sources */,
+				CEBBDC52232F87BE009568B8 /* ActorCollectionViewProtocol.swift in Sources */,
 				CEAF0E00232E8443003FE337 /* PeopleTableViewProtocol.swift in Sources */,
 				CE906A68232A730A00691AFE /* PeopleViewController.swift in Sources */,
 				CE906A6E232A7E6100691AFE /* PeopleTableViewCellModel.swift in Sources */,
@@ -239,6 +250,7 @@
 				B18B969B23181885007BB1B8 /* Ibtikar.xcdatamodeld in Sources */,
 				CE8E68592328D8D500D8DE97 /* CollectionModel.swift in Sources */,
 				CEAF0DFC232E83BE003FE337 /* PeoplePresenter.swift in Sources */,
+				CEBBDC50232F8769009568B8 /* ActorCollectionModelProtocol.swift in Sources */,
 				B19E7766231C0FE8008197EB /* DownloadImgVC.swift in Sources */,
 				B18B969323181885007BB1B8 /* AppDelegate.swift in Sources */,
 			);

@@ -19,13 +19,13 @@ class PeoplePresenter {
     init( ViewObj: PeopleTableViewProtocol, ModelObj: PeopleTableViewModelProtocol) {
         peopleTableViewModel = ModelObj
         peopleTableView = ViewObj
+        totalPagesNo = ModelObj.getTotalPagesNo()
     }
     func removeAllandReload(completionHandler: ()->Void){
         peopleTableViewModel.removeAllinArray(completionHandler: {
           self.peopleTableView.refreshTableView()
         })
-        
-    
+        completionHandler()
     }
     
     func getObjects(number: Int, urlString: String, completionHandler: ()->Void){
@@ -48,6 +48,6 @@ class PeoplePresenter {
         return ApiPageNo
     }
     func getTotalPageNo() -> Int {
-        return totalPagesNo
+        return peopleTableViewModel.getTotalPagesNo()
     }
 }

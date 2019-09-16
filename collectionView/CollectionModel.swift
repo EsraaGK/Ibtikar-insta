@@ -7,10 +7,26 @@
 //
 
 import Foundation
-class CollectionModel{
-  var  profiles = Array<String>()
+class CollectionModel: ActorCollectionModelProtocol{
+  
+    func getStringUrlAtIndex(index: Int) -> String {
+        return profiles[index]
+    }
     
-    func loadHeaderImage(stringURL:String, completion:@escaping (Data?)->Void){
+    func getProfileArrayCount() -> Int {
+           return profiles.count
+    }
+    
+   
+  var  profiles = Array<String>()
+    var NavActorObj: Actor
+    
+    init(ActorObj:Actor){
+        NavActorObj = ActorObj
+    }
+    
+    func loadHeaderImage(completion:@escaping (Data?)->Void){
+        let stringURL = NavActorObj.profile_path!
         if stringURL != "noPath" {
             let url = URL(string: stringURL)!
             let request = URLRequest(url: url)
@@ -30,33 +46,32 @@ class CollectionModel{
         }
     }
     
-    
-    func loadCollectionImage(index:Int ,  completion:@escaping (Data?)->Void){
+    func loadCollectionImage(index:Int ,completionHandler: @escaping (Data?)->Void){
         if profiles[index] != "noPath" {
             let url = URL(string: profiles[index])!
                 let request = URLRequest(url: url)
             let task = URLSession.shared.dataTask(with: request, completionHandler: { adata, response, error in
                     if let data = adata{
                         print("this is data \(data)")
-                        completion(data)
+                        completionHandler(data)
                     }else{
-                         completion(nil)
+                         completionHandler(nil)
                     }
         
             })
             task.resume()
         
         }else{// nopath
-             completion(nil)
+             completionHandler(nil)
         }
     }
     
-    func getResponse (id:Int, completionHandler:@escaping ()->Void){
+    func getResponse (completionHandler:@escaping ()->Void){
         
         // Obtain Reference to Shared Session
         let sharedSession = URLSession.shared
         
-        if let url = URL(string: "https://api.themoviedb.org/3/person/\(id)/images?api_key=3955a9144c79cb1fca10185c95080107") {
+        if let url = URL(string: "https://api.themoviedb.org/3/person/\(NavActorObj.id!)/images?api_key=3955a9144c79cb1fca10185c95080107") {
             // Create Request
             let request = URLRequest(url: url)
             
@@ -98,4 +113,15 @@ class CollectionModel{
             dataTask.resume()
         }
     }
+    
+    func getActorNameAt()->String {
+        return NavActorObj.name!
+    }
+    
+    func getActorPopularityAt() -> Double {
+        return NavActorObj.popularity!
+    }
+    
+    
 }
+

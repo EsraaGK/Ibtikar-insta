@@ -10,7 +10,9 @@ import UIKit
 
 class PeopleViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate, PeopleTableViewProtocol{
     func refreshTableView() {
-        peopleTableView.reloadData()
+        DispatchQueue.main.async {
+            self.peopleTableView.reloadData()
+        }
     }
     
     @IBOutlet weak var peopleTableView: UITableView!
@@ -19,8 +21,8 @@ class PeopleViewController: UIViewController, UITextFieldDelegate, UITableViewDe
     var peopleURL="https://api.themoviedb.org/3/person/popular?api_key=1a45f741aada87874aacfbeb73119bae&language=en-US"
     var searchURL="https://api.themoviedb.org/3/search/person?api_key=1a45f741aada87874aacfbeb73119bae&query="
     
-   // var ApiPageNo = 1
-  //  var totalPagesNo = 0
+    // var ApiPageNo = 1
+    //  var totalPagesNo = 0
     var currentUrl = ""
     
     @objc func refresh(_ sender:AnyObject) {
@@ -29,12 +31,8 @@ class PeopleViewController: UIViewController, UITextFieldDelegate, UITableViewDe
         self.presenter!.removeAllandReload(){
             
             presenter!.getObjects(number: 1, urlString: currentUrl){
-            
-            DispatchQueue.main.async {
-                self.refreshTableView()
-                
+                refreshTableView()
             }
-          }
         }
         peopleTableView.refreshControl!.endRefreshing()
     }
@@ -50,19 +48,12 @@ class PeopleViewController: UIViewController, UITextFieldDelegate, UITableViewDe
         
         peopleTableView.delegate=self
         peopleTableView.dataSource=self
-        
         searchTextField.delegate=self
-        //    session = URLSession.shared
+        
         
         let apiPageNo = presenter!.getApiPageNo()
-         presenter!.getObjects(number: apiPageNo,urlString: peopleURL){
-//            self.ApiPageNo = self.tableModel.ApiPageNo
-//            self.totalPagesNo = self.tableModel.totalPagesNo
-            DispatchQueue.main.async {
-                
-                self.refreshTableView()
-            }
-            
+        presenter!.getObjects(number: apiPageNo,urlString: peopleURL){
+            refreshTableView()
         }
         currentUrl = peopleURL
         
@@ -75,11 +66,11 @@ class PeopleViewController: UIViewController, UITextFieldDelegate, UITableViewDe
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
-       let arrayCount = presenter!.getArrayCount()
+        let arrayCount = presenter!.getArrayCount()
         if arrayCount != 0{
             let collectionview = self.storyboard?.instantiateViewController(withIdentifier: "mycollectionview") as!CollectionViewController
-            collectionview.NavActorObj = presenter!.getObjectForCell(index: indexPath.row)
-            
+            let actorObj = presenter!.getObjectForCell(index: indexPath.row)
+            collectionview.presenter = ActorPresenter(ViewObj: collectionview, ModelObj: CollectionModel(ActorObj: actorObj))
             self.navigationController?.pushViewController( collectionview, animated: true)
         }
         //
@@ -92,11 +83,7 @@ class PeopleViewController: UIViewController, UITextFieldDelegate, UITableViewDe
             currentUrl=peopleURL
             presenter!.setApiPageNo(pageNo: 1)
             presenter!.getObjects(number: 1,urlString: currentUrl){
-                DispatchQueue.main.async {
-                    
-                    self.refreshTableView()
-                }
-                
+                refreshTableView()
             }
         }
         
@@ -118,13 +105,23 @@ class PeopleViewController: UIViewController, UITextFieldDelegate, UITableViewDe
             }
             
             presenter!.getObjects(number: 1, urlString: currentUrl.replacingOccurrences(of: " ", with:"%20")){
-                DispatchQueue.main.async {
-                    
-                    self.peopleTableView.reloadData()
-                }
+                refreshTableView()
             }
         }
         return true
+    }
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        //load more
+        var pageNo = self.presenter!.getApiPageNo()
+        let  totalPageNo = self.presenter!.getTotalPageNo()
+        if indexPath.row == presenter!.getArrayCount()-1 && pageNo <= totalPageNo {
+            pageNo += 1
+            print("total pageno =\(pageNo)")
+            presenter!.setApiPageNo(pageNo: pageNo)
+            presenter!.getObjects(number: pageNo, urlString: currentUrl){
+                refreshTableView()
+            }
+        }
     }
     
 }
@@ -139,18 +136,6 @@ extension PeopleViewController: UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         if let cell = peopleTableView.dequeueReusableCell(withIdentifier: "PeopleTableViewCell", for: indexPath) as? PeopleTableViewCell{
-            //load more
-              var pageNo = self.presenter!.getApiPageNo()
-            let  totalPageNo = self.presenter!.getTotalPageNo()
-            if indexPath.row == presenter!.getArrayCount() - 7 && pageNo <= totalPageNo {
-                pageNo += 1
-                presenter!.getObjects(number: pageNo, urlString: currentUrl){
-                    DispatchQueue.main.async {
-                        self.peopleTableView.reloadData()
-                    }
-                }
-            }
-            
             //configure cell
             cell.configure( actorOBJ: presenter!.getObjectForCell(index: indexPath.row))
             
@@ -160,6 +145,7 @@ extension PeopleViewController: UITableViewDataSource{
             return UITableViewCell()
         }
     }
+    
     
     
 }

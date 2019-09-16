@@ -14,4 +14,5 @@ protocol PeopleTableViewModelProtocol {
     func getJson(pnumber : Int , urlString:String , completionHandler : @escaping ()->Void)
     func getObjectAtIndex(index:Int)->Actor
     func getArrayCount()->Int
+    func getTotalPagesNo() -> Int
 }

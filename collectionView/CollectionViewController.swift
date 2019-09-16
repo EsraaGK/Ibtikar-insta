@@ -10,18 +10,24 @@ import UIKit
 
 private let reuseIdentifier = "Cell"
 
-class CollectionViewController: UICollectionViewController  {
-    var collectionModel = CollectionModel()
-    var NavActorObj = Actor ()
+class CollectionViewController: UICollectionViewController, ActorCollectionViewProtocol  {
+   
+    func refreshActorView() {
+        DispatchQueue.main.async {
+            self.collectionView.reloadData()
+        }
+    }
+    
+    //var collectionModel : ActorCollectionModelProtocol
+    
+    var presenter: ActorPresenter?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView.delegate=self
          collectionView.dataSource=self
-        collectionModel.getResponse(id: NavActorObj.id! , completionHandler: {
-            DispatchQueue.main.async {
-                self.collectionView.reloadData()
-            }
+        presenter!.getResponse(completionHandler: {
+            self.refreshActorView()
         })
        
     }
@@ -34,7 +40,7 @@ class CollectionViewController: UICollectionViewController  {
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        return collectionModel.profiles.count
+        return presenter!.getArrayCount()
     }
     //-------------------------------------------------------
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
@@ -45,9 +51,9 @@ class CollectionViewController: UICollectionViewController  {
         } else if (kind == UICollectionView.elementKindSectionHeader) {
             let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "myheader", for: indexPath)
             // Customize headerView here
-            
-            collectionModel.loadHeaderImage(stringURL:NavActorObj.profile_path!, completion:{ data in
-                if let myData = data{
+           
+                if let myData = presenter!.loadImageForHeader( ){
+                    print(myData)
                     DispatchQueue.main.async() {
                         ( headerView.viewWithTag(1) as! UIImageView).image  = UIImage(data: myData)
                     }
@@ -55,29 +61,9 @@ class CollectionViewController: UICollectionViewController  {
                 }else{
                     ( headerView.viewWithTag(1) as! UIImageView).image = UIImage(named:"Reverb")
                 }
-                
-            })
-//            if NavActorObj.profile_path! != "noPath" {
-//                if let url = URL(string: NavActorObj.profile_path! ){
-//                    let request = URLRequest(url: url)
-//                    let task = URLSession.shared.dataTask(with: request) { adata, response, error in
-//                        guard let data = adata, error == nil else { return }
-//
-//                        DispatchQueue.main.async() {
-//                            print("this is data \(data)")
-//
-//                            ( headerView.viewWithTag(1) as! UIImageView).image  = UIImage(data: data)
-//                        }
-//                    }
-//                    task.resume()
-//
-//                }
-//            }else{
-//                ( headerView.viewWithTag(1) as! UIImageView).image = UIImage(named:"Reverb")
-//            }
-          
-            (headerView.viewWithTag(2) as! UILabel).text = NavActorObj.name
-            (headerView.viewWithTag(3) as! UILabel).text = ("the popularity rate is \(NavActorObj.popularity)")
+            
+            (headerView.viewWithTag(2) as! UILabel).text = presenter!.getActorNameAt()
+           (headerView.viewWithTag(3) as! UILabel).text = ("the popularity rate is \(presenter!.getActorPopularityAt())")
             return headerView
         }
         fatalError()
@@ -87,8 +73,8 @@ class CollectionViewController: UICollectionViewController  {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "mycell", for: indexPath)
         
         // Configure the cell
-        collectionModel.loadCollectionImage(index: indexPath.row, completion:{ data in
-            if let myData = data{
+        
+            if let myData = presenter!.loadImageForCellAt(index: indexPath.row){
                 DispatchQueue.main.async() {
                     
                     ( cell.viewWithTag(1) as! UIImageView).image  = UIImage(data: myData)
@@ -98,13 +84,13 @@ class CollectionViewController: UICollectionViewController  {
                  ( cell.viewWithTag(1) as! UIImageView).image = UIImage(named:"Reverb")
             }
             
-        })
+       
         return cell
     }
     
   override  func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let downloadview = self.storyboard?.instantiateViewController(withIdentifier: "mydownloadview") as! DownloadImgVC
-        downloadview.StringUrl = collectionModel.profiles[indexPath.row]
+        downloadview.StringUrl = presenter?.getObjectForCell(index: indexPath.row)
         
         self.navigationController?.pushViewController( downloadview, animated: true)
     }

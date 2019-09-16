@@ -124,7 +124,7 @@ class TableViewController: UITableViewController,UITextFieldDelegate  {
         
         
         let collectionview = self.storyboard?.instantiateViewController(withIdentifier: "mycollectionview") as!CollectionViewController
-        collectionview.NavActorObj = self.tableModel.results[indexPath.row]
+     //   collectionview.NavActorObj = self.tableModel.results[indexPath.row]
         
         self.navigationController?.pushViewController( collectionview, animated: true)
         //

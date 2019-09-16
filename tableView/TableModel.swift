@@ -152,5 +152,8 @@ class TableModel: PeopleTableViewModelProtocol{
     func getArrayCount()->Int{
         return results.count
     }
+    func getTotalPagesNo() -> Int {
+        return totalPagesNo
+    }
 }
 
