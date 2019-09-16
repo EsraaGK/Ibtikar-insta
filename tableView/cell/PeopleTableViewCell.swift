@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class PeopleTableViewCell: UITableViewCell {
 
@@ -27,24 +28,22 @@ class PeopleTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     func configure(actorOBJ :Actor){
-        print(actorOBJ.name!+"mmmmmmmm")
+        print(actorOBJ.name!)
         ActorNameLable.text = actorOBJ.name! //as! String
         
-        
-        peopleTableViewCellModel.loadImg(stringUrl: actorOBJ.profile_path!, completionHandler: {
-            myData in
-            if let data = myData{
-                DispatchQueue.main.async {
-                  //  if let updateCell = tableView.cellForRow(at: indexPath) as? TableViewCell {
-                       // let img:UIImage! = UIImage(data: data)
-                    //    updateCell.cellImg.image = img
-                    self.peopleImageView.image = UIImage(data: data)
-                 //   }
-                }
-            }else{
-                self.peopleImageView.image = UIImage(named:"Reverb")
-            }//else
-        })//completion
+        peopleImageView.sd_setImage(with: URL(string:actorOBJ.profile_path!), placeholderImage: UIImage(named: "Reverb"))
+//        peopleTableViewCellModel.loadImg(stringUrl: actorOBJ.profile_path!, completionHandler: {
+//            myData in
+//            if let data = myData{
+//                DispatchQueue.main.async {
+//
+//                    self.peopleImageView.image = UIImage(data: data)
+//
+//                }
+//            }else{
+//                self.peopleImageView.image = UIImage(named:"Reverb")
+//            }//else
+//        })//completion
       
     }
     

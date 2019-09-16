@@ -7,28 +7,62 @@
 //
 
 import Foundation
-class DownloadImgModel{
+import SDWebImage
+
+class DownloadImgModel: DownloadModelProtocol{
+   
+    var stringUrl : String
     
-    func loadImg(stringURL :String , completionHandler:@escaping (Data?)->Void){
-        if stringURL != "noPath" {
-            let url = URL(string: stringURL)!
-            let request = URLRequest(url: url)
-            let task = URLSession.shared.dataTask(with: request, completionHandler: { adata, response, error in
-                if let data = adata{
-                    print("this is data \(data)")
-                    completionHandler(data)
-                }else{
+    init(urlString: String) {
+        stringUrl = urlString
+    }
+    
+    func getStringURL() -> String {
+        return stringUrl
+    }
+    
+    func downloadImg(completionHandler: @escaping (Data?) -> Void) {
+                if stringUrl != "noPath" {
+                    let url = URL(string: stringUrl)!
+                    let request = URLRequest(url: url)
+                    let task = URLSession.shared.dataTask(with: request, completionHandler: { adata, response, error in
+                        if let data = adata{
+                            print("this is data \(data)")
+                            completionHandler(data)
+                        }else{
+                            completionHandler(nil)
+                        }
+        
+                    })
+                    task.resume()
+        
+                }else{// nopath
                     completionHandler(nil)
                 }
-                
-            })
-            task.resume()
-            
-        }else{// nopath
-            completionHandler(nil)
-        }
-       
     }
+    
+    
+    
+//    func loadImg(stringURL :String , completionHandler:@escaping (Data?)->Void){
+//        if stringURL != "noPath" {
+//            let url = URL(string: stringURL)!
+//            let request = URLRequest(url: url)
+//            let task = URLSession.shared.dataTask(with: request, completionHandler: { adata, response, error in
+//                if let data = adata{
+//                    print("this is data \(data)")
+//                    completionHandler(data)
+//                }else{
+//                    completionHandler(nil)
+//                }
+//
+//            })
+//            task.resume()
+//
+//        }else{// nopath
+//            completionHandler(nil)
+//        }
+    
+    //}
     
     func downloadImg(StringUrl :String ,completionHandler:(Data?)->Void){
         if let url = URL(string: StringUrl),

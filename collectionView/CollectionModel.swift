@@ -46,26 +46,26 @@ class CollectionModel: ActorCollectionModelProtocol{
         }
     }
     
-    func loadCollectionImage(index:Int ,completionHandler: @escaping (Data?)->Void){
-        if profiles[index] != "noPath" {
-            let url = URL(string: profiles[index])!
-                let request = URLRequest(url: url)
-            let task = URLSession.shared.dataTask(with: request, completionHandler: { adata, response, error in
-                    if let data = adata{
-                        print("this is data \(data)")
-                        completionHandler(data)
-                    }else{
-                         completionHandler(nil)
-                    }
-        
-            })
-            task.resume()
-        
-        }else{// nopath
-             completionHandler(nil)
-        }
-    }
-    
+//    func loadCollectionImage(index:Int ,completionHandler: @escaping (Data?)->Void){
+//        if profiles[index] != "noPath" {
+//            let url = URL(string: profiles[index])!
+//                let request = URLRequest(url: url)
+//            let task = URLSession.shared.dataTask(with: request, completionHandler: { adata, response, error in
+//                    if let data = adata{
+//                        print("this is data \(data)")
+//                        completionHandler(data)
+//                    }else{
+//                         completionHandler(nil)
+//                    }
+//        
+//            })
+//            task.resume()
+//        
+//        }else{// nopath
+//             completionHandler(nil)
+//        }
+//    }
+//    
     func getResponse (completionHandler:@escaping ()->Void){
         
         // Obtain Reference to Shared Session
@@ -122,6 +122,8 @@ class CollectionModel: ActorCollectionModelProtocol{
         return NavActorObj.popularity!
     }
     
-    
+    func getActorProfilePath()->String {
+        return NavActorObj.profile_path!
+    }
 }
 

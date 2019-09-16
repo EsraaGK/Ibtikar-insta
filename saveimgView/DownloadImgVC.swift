@@ -7,32 +7,35 @@
 //
 
 import UIKit
+import SDWebImage
 
-class DownloadImgVC: UIViewController {
-    let downloadImgModel = DownloadImgModel()
-    var StringUrl : String?
+class DownloadImgVC: UIViewController, DownloadViewProtocol {
+   
+    var downloadPresenter :DownloadPresenter?
     
     @IBOutlet weak var ImgtoDownload: UIImageView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        let stringUrl = downloadPresenter!.getActorImgPath()
 
+        ImgtoDownload.sd_setImage(with: URL(string:stringUrl), placeholderImage: UIImage(named: "placeholder.png"))
         // Do any additional setup after loading the view.
-        downloadImgModel.loadImg(stringURL: StringUrl!, completionHandler: {myData in
-            if let data = myData{
-                DispatchQueue.main.async() {
-                    print("this is data \(data)")
-                    //print("this is response \(response)")
-                    self.ImgtoDownload!.image = UIImage(data: data)
-                }
-            }else{
-                self.ImgtoDownload!.image = UIImage(named:"Reverb")
-        }
-      })
+//        downloadImgModel.loadImg(stringURL: StringUrl!, completionHandler: {myData in
+//            if let data = myData{
+//                DispatchQueue.main.async() {
+//                    print("this is data \(data)")
+//                    //print("this is response \(response)")
+//                    self.ImgtoDownload!.image = UIImage(data: data)
+//                }
+//            }else{
+//                self.ImgtoDownload!.image = UIImage(named:"Reverb")
+//        }
+//      })
     }
     
     @IBAction func downloadImg(_ sender: Any) {
         
-        downloadImgModel.downloadImg(StringUrl: StringUrl!, completionHandler:{
+        downloadPresenter!.downloadActorImg(completion: {
             myData in
             if let data = myData,
                 let image = UIImage(data: data) {

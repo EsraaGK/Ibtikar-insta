@@ -29,33 +29,36 @@ class ActorPresenter {
     func getArrayCount() -> Int {
         return collectionModel.getProfileArrayCount()
     }
-    func loadImageForHeader()->Data?{
-         var datais :Data?
-        collectionModel.loadHeaderImage(){data in
-            if let imgData = data{
-                datais = imgData
-            }else{
-                datais = nil
-            }
-        }
-        return datais
-    }
-    func loadImageForCellAt(index: Int)->Data?{
-        var datais :Data?
-        collectionModel.loadCollectionImage(index: index) {data in
-            if let imgData = data{
-                datais = imgData
-            }else{
-                datais = nil
-            }
-        }
-        return datais
-    }
+//    func loadImageForHeader()->Data?{
+//         var datais :Data?
+//        collectionModel.loadHeaderImage(){data in
+//            if let imgData = data{
+//                datais = imgData
+//            }else{
+//                datais = nil
+//            }
+//        }
+//        return datais
+//    }
+//    func loadImageForCellAt(index: Int)->Data?{
+//        var datais :Data?
+//        collectionModel.loadCollectionImage(index: index) {data in
+//            if let imgData = data{
+//                datais = imgData
+//            }else{
+//                datais = nil
+//            }
+//        }
+//        return datais
+//    }
     func getActorNameAt()->String{
         return collectionModel.getActorNameAt()
     }
     func getActorPopularityAt()->Double
     {
         return collectionModel.getActorPopularityAt()
+    }
+    func getActorProfilePath() ->String{
+     return collectionModel.getActorProfilePath()
     }
 }

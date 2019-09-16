@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -18,6 +18,7 @@
 		B19E7766231C0FE8008197EB /* DownloadImgVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19E7761231C0FE7008197EB /* DownloadImgVC.swift */; };
 		B19E7768231C0FE8008197EB /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19E7763231C0FE7008197EB /* TableViewController.swift */; };
 		B19E7769231C0FE8008197EB /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19E7764231C0FE8008197EB /* TableViewCell.swift */; };
+		BA86DD4A1AD1313BDC84620B /* Pods_Ibtikar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE2D412D86583FEEFBA1D1A7 /* Pods_Ibtikar.framework */; };
 		CE6D373F2327EEFC00D080C2 /* TableModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6D373E2327EEFC00D080C2 /* TableModel.swift */; };
 		CE8E68592328D8D500D8DE97 /* CollectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8E68582328D8D500D8DE97 /* CollectionModel.swift */; };
 		CE8E685B2328F09A00D8DE97 /* DownloadImgModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8E685A2328F09A00D8DE97 /* DownloadImgModel.swift */; };
@@ -31,9 +32,13 @@
 		CEBBDC50232F8769009568B8 /* ActorCollectionModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBBDC4F232F8769009568B8 /* ActorCollectionModelProtocol.swift */; };
 		CEBBDC52232F87BE009568B8 /* ActorCollectionViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBBDC51232F87BE009568B8 /* ActorCollectionViewProtocol.swift */; };
 		CEBBDC54232F8B24009568B8 /* ActorPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBBDC53232F8B24009568B8 /* ActorPresenter.swift */; };
+		CEBBDC56232FDB28009568B8 /* DownloadPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBBDC55232FDB28009568B8 /* DownloadPresenter.swift */; };
+		CEBBDC58232FDB8F009568B8 /* DownloadModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBBDC57232FDB8F009568B8 /* DownloadModelProtocol.swift */; };
+		CEBBDC5A232FDBD8009568B8 /* DownloadViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBBDC59232FDBD8009568B8 /* DownloadViewProtocol.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		675F10BD28C7FCC73BB66DF5 /* Pods-Ibtikar.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ibtikar.release.xcconfig"; path = "Target Support Files/Pods-Ibtikar/Pods-Ibtikar.release.xcconfig"; sourceTree = "<group>"; };
 		B18B968F23181885007BB1B8 /* Ibtikar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ibtikar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B18B969223181885007BB1B8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B18B969423181885007BB1B8 /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
@@ -47,6 +52,7 @@
 		B19E7761231C0FE7008197EB /* DownloadImgVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadImgVC.swift; sourceTree = "<group>"; };
 		B19E7763231C0FE7008197EB /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		B19E7764231C0FE8008197EB /* TableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
+		BFA4A0C254CA42D8D56AB7F1 /* Pods-Ibtikar.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ibtikar.debug.xcconfig"; path = "Target Support Files/Pods-Ibtikar/Pods-Ibtikar.debug.xcconfig"; sourceTree = "<group>"; };
 		CE6D373E2327EEFC00D080C2 /* TableModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableModel.swift; sourceTree = "<group>"; };
 		CE8E68582328D8D500D8DE97 /* CollectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionModel.swift; sourceTree = "<group>"; };
 		CE8E685A2328F09A00D8DE97 /* DownloadImgModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadImgModel.swift; sourceTree = "<group>"; };
@@ -60,6 +66,10 @@
 		CEBBDC4F232F8769009568B8 /* ActorCollectionModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActorCollectionModelProtocol.swift; sourceTree = "<group>"; };
 		CEBBDC51232F87BE009568B8 /* ActorCollectionViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActorCollectionViewProtocol.swift; sourceTree = "<group>"; };
 		CEBBDC53232F8B24009568B8 /* ActorPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActorPresenter.swift; sourceTree = "<group>"; };
+		CEBBDC55232FDB28009568B8 /* DownloadPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadPresenter.swift; sourceTree = "<group>"; };
+		CEBBDC57232FDB8F009568B8 /* DownloadModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadModelProtocol.swift; sourceTree = "<group>"; };
+		CEBBDC59232FDBD8009568B8 /* DownloadViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadViewProtocol.swift; sourceTree = "<group>"; };
+		FE2D412D86583FEEFBA1D1A7 /* Pods_Ibtikar.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Ibtikar.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +77,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BA86DD4A1AD1313BDC84620B /* Pods_Ibtikar.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -81,6 +92,8 @@
 				CE6D373B2327EA9C00D080C2 /* tableView */,
 				B18B969123181885007BB1B8 /* Ibtikar */,
 				B18B969023181885007BB1B8 /* Products */,
+				BB576D55F27C2F74FFCB2733 /* Pods */,
+				CC3152BBD21F8FEABBAA9CDB /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -105,6 +118,23 @@
 				B18B96A7231818E1007BB1B8 /* ApiObj.swift */,
 			);
 			path = Ibtikar;
+			sourceTree = "<group>";
+		};
+		BB576D55F27C2F74FFCB2733 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				BFA4A0C254CA42D8D56AB7F1 /* Pods-Ibtikar.debug.xcconfig */,
+				675F10BD28C7FCC73BB66DF5 /* Pods-Ibtikar.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		CC3152BBD21F8FEABBAA9CDB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FE2D412D86583FEEFBA1D1A7 /* Pods_Ibtikar.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		CE6D373B2327EA9C00D080C2 /* tableView */ = {
@@ -138,6 +168,9 @@
 			children = (
 				B19E7761231C0FE7008197EB /* DownloadImgVC.swift */,
 				CE8E685A2328F09A00D8DE97 /* DownloadImgModel.swift */,
+				CEBBDC55232FDB28009568B8 /* DownloadPresenter.swift */,
+				CEBBDC57232FDB8F009568B8 /* DownloadModelProtocol.swift */,
+				CEBBDC59232FDBD8009568B8 /* DownloadViewProtocol.swift */,
 			);
 			path = saveimgView;
 			sourceTree = "<group>";
@@ -168,9 +201,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B18B96A42318188C007BB1B8 /* Build configuration list for PBXNativeTarget "Ibtikar" */;
 			buildPhases = (
+				0A93524A3FFC2CE22D02788E /* [CP] Check Pods Manifest.lock */,
 				B18B968B23181885007BB1B8 /* Sources */,
 				B18B968C23181885007BB1B8 /* Frameworks */,
 				B18B968D23181885007BB1B8 /* Resources */,
+				FFB3805769FEC2A56E75170B /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -228,6 +263,48 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		0A93524A3FFC2CE22D02788E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Ibtikar-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FFB3805769FEC2A56E75170B /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Ibtikar/Pods-Ibtikar-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Ibtikar/Pods-Ibtikar-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Ibtikar/Pods-Ibtikar-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		B18B968B23181885007BB1B8 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -236,10 +313,12 @@
 				CEBBDC54232F8B24009568B8 /* ActorPresenter.swift in Sources */,
 				B19E7769231C0FE8008197EB /* TableViewCell.swift in Sources */,
 				CEAF0DFE232E83EC003FE337 /* PeopleTableViewModelProtocol.swift in Sources */,
+				CEBBDC58232FDB8F009568B8 /* DownloadModelProtocol.swift in Sources */,
 				CE8E685B2328F09A00D8DE97 /* DownloadImgModel.swift in Sources */,
 				CE6D373F2327EEFC00D080C2 /* TableModel.swift in Sources */,
 				B19E7765231C0FE8008197EB /* CollectionViewController.swift in Sources */,
 				B18B96A8231818E1007BB1B8 /* ApiObj.swift in Sources */,
+				CEBBDC56232FDB28009568B8 /* DownloadPresenter.swift in Sources */,
 				CE906A6B232A79EC00691AFE /* PeopleTableViewCell.swift in Sources */,
 				CEBBDC52232F87BE009568B8 /* ActorCollectionViewProtocol.swift in Sources */,
 				CEAF0E00232E8443003FE337 /* PeopleTableViewProtocol.swift in Sources */,
@@ -253,6 +332,7 @@
 				CEBBDC50232F8769009568B8 /* ActorCollectionModelProtocol.swift in Sources */,
 				B19E7766231C0FE8008197EB /* DownloadImgVC.swift in Sources */,
 				B18B969323181885007BB1B8 /* AppDelegate.swift in Sources */,
+				CEBBDC5A232FDBD8009568B8 /* DownloadViewProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -396,6 +476,7 @@
 		};
 		B18B96A52318188C007BB1B8 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BFA4A0C254CA42D8D56AB7F1 /* Pods-Ibtikar.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -413,6 +494,7 @@
 		};
 		B18B96A62318188C007BB1B8 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 675F10BD28C7FCC73BB66DF5 /* Pods-Ibtikar.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

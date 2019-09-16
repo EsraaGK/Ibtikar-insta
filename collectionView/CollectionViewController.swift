@@ -7,11 +7,12 @@
 //
 
 import UIKit
+import SDWebImage
 
 private let reuseIdentifier = "Cell"
 
 class CollectionViewController: UICollectionViewController, ActorCollectionViewProtocol  {
-   
+    
     func refreshActorView() {
         DispatchQueue.main.async {
             self.collectionView.reloadData()
@@ -25,19 +26,19 @@ class CollectionViewController: UICollectionViewController, ActorCollectionViewP
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView.delegate=self
-         collectionView.dataSource=self
+        collectionView.dataSource=self
         presenter!.getResponse(completionHandler: {
             self.refreshActorView()
         })
-       
+        
     }
-   
+    
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
-
-
+    
+    
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
         return presenter!.getArrayCount()
@@ -51,52 +52,56 @@ class CollectionViewController: UICollectionViewController, ActorCollectionViewP
         } else if (kind == UICollectionView.elementKindSectionHeader) {
             let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "myheader", for: indexPath)
             // Customize headerView here
-           
-                if let myData = presenter!.loadImageForHeader( ){
-                    print(myData)
-                    DispatchQueue.main.async() {
-                        ( headerView.viewWithTag(1) as! UIImageView).image  = UIImage(data: myData)
-                    }
-                    
-                }else{
-                    ( headerView.viewWithTag(1) as! UIImageView).image = UIImage(named:"Reverb")
-                }
+            ( headerView.viewWithTag(1) as! UIImageView).sd_setImage(with: URL(string:presenter!.getActorProfilePath()), placeholderImage: UIImage(named: "Reverb"))
+            
+            //                if let myData = presenter!.loadImageForHeader( ){
+            //                    print(myData)
+            //                    DispatchQueue.main.async() {
+            //                        ( headerView.viewWithTag(1) as! UIImageView).image  = UIImage(data: myData)
+            //                    }
+            //
+            //                }else{
+            //                    ( headerView.viewWithTag(1) as! UIImageView).image = UIImage(named:"Reverb")
+            //                }
             
             (headerView.viewWithTag(2) as! UILabel).text = presenter!.getActorNameAt()
-           (headerView.viewWithTag(3) as! UILabel).text = ("the popularity rate is \(presenter!.getActorPopularityAt())")
+            (headerView.viewWithTag(3) as! UILabel).text = ("the popularity rate is \(presenter!.getActorPopularityAt())")
             return headerView
         }
         fatalError()
     }
-
+    
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "mycell", for: indexPath)
         
         // Configure the cell
         
-            if let myData = presenter!.loadImageForCellAt(index: indexPath.row){
-                DispatchQueue.main.async() {
-                    
-                    ( cell.viewWithTag(1) as! UIImageView).image  = UIImage(data: myData)
-                }
-                
-            }else{
-                 ( cell.viewWithTag(1) as! UIImageView).image = UIImage(named:"Reverb")
-            }
-            
-       
+        ( cell.viewWithTag(1) as! UIImageView).sd_setImage(with: URL(string:presenter!.getObjectForCell(index: indexPath.row)), placeholderImage: UIImage(named: "Reverb"))
+        //            if let myData = presenter!.loadImageForCellAt(index: indexPath.row){
+        //                DispatchQueue.main.async() {
+        //
+        //                    ( cell.viewWithTag(1) as! UIImageView).image  = UIImage(data: myData)
+        //                }
+        //
+        //            }else{
+        //                 ( cell.viewWithTag(1) as! UIImageView).image = UIImage(named:"Reverb")
+        //            }
+        //
+        
         return cell
     }
     
-  override  func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    override  func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let downloadview = self.storyboard?.instantiateViewController(withIdentifier: "mydownloadview") as! DownloadImgVC
-        downloadview.StringUrl = presenter?.getObjectForCell(index: indexPath.row)
+        let stringUrl = presenter!.getObjectForCell(index: indexPath.row)
+        downloadview.downloadPresenter = DownloadPresenter(viewObj: downloadview, modelObj:DownloadImgModel(urlString: stringUrl))
+        //
         
         self.navigationController?.pushViewController( downloadview, animated: true)
     }
-
     
     
     
-
+    
+    
 }
