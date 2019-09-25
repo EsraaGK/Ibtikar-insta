@@ -19,6 +19,12 @@
 		B19E7768231C0FE8008197EB /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19E7763231C0FE7008197EB /* TableViewController.swift */; };
 		B19E7769231C0FE8008197EB /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19E7764231C0FE8008197EB /* TableViewCell.swift */; };
 		BA86DD4A1AD1313BDC84620B /* Pods_Ibtikar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE2D412D86583FEEFBA1D1A7 /* Pods_Ibtikar.framework */; };
+		CE1190B3233BAE3E0065005F /* twoPages.json in Resources */ = {isa = PBXBuildFile; fileRef = CE1190AE233BAE3E0065005F /* twoPages.json */; };
+		CE1190B4233BAE3E0065005F /* LoadMoreTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1190AF233BAE3E0065005F /* LoadMoreTest.swift */; };
+		CE1190B5233BAE3E0065005F /* LoadFirstPageTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1190B0233BAE3E0065005F /* LoadFirstPageTest.swift */; };
+		CE1190B6233BAE3E0065005F /* firstPage.json in Resources */ = {isa = PBXBuildFile; fileRef = CE1190B1233BAE3E0065005F /* firstPage.json */; };
+		CE1190B8233BAE9C0065005F /* firstPage.json in Resources */ = {isa = PBXBuildFile; fileRef = CE1190B1233BAE3E0065005F /* firstPage.json */; };
+		CE1190B9233BAE9C0065005F /* twoPages.json in Resources */ = {isa = PBXBuildFile; fileRef = CE1190AE233BAE3E0065005F /* twoPages.json */; };
 		CE6D373F2327EEFC00D080C2 /* TableModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6D373E2327EEFC00D080C2 /* TableModel.swift */; };
 		CE8E68592328D8D500D8DE97 /* CollectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8E68582328D8D500D8DE97 /* CollectionModel.swift */; };
 		CE8E685B2328F09A00D8DE97 /* DownloadImgModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8E685A2328F09A00D8DE97 /* DownloadImgModel.swift */; };
@@ -37,6 +43,16 @@
 		CEBBDC5A232FDBD8009568B8 /* DownloadViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBBDC59232FDBD8009568B8 /* DownloadViewProtocol.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		CE1190A8233BADA10065005F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B18B968723181884007BB1B8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B18B968E23181885007BB1B8;
+			remoteInfo = Ibtikar;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		675F10BD28C7FCC73BB66DF5 /* Pods-Ibtikar.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ibtikar.release.xcconfig"; path = "Target Support Files/Pods-Ibtikar/Pods-Ibtikar.release.xcconfig"; sourceTree = "<group>"; };
 		B18B968F23181885007BB1B8 /* Ibtikar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ibtikar.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -53,6 +69,12 @@
 		B19E7763231C0FE7008197EB /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		B19E7764231C0FE8008197EB /* TableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		BFA4A0C254CA42D8D56AB7F1 /* Pods-Ibtikar.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ibtikar.debug.xcconfig"; path = "Target Support Files/Pods-Ibtikar/Pods-Ibtikar.debug.xcconfig"; sourceTree = "<group>"; };
+		CE1190A3233BADA10065005F /* IbtikarTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IbtikarTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		CE1190A7233BADA10065005F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CE1190AE233BAE3E0065005F /* twoPages.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = twoPages.json; sourceTree = "<group>"; };
+		CE1190AF233BAE3E0065005F /* LoadMoreTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadMoreTest.swift; sourceTree = "<group>"; };
+		CE1190B0233BAE3E0065005F /* LoadFirstPageTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadFirstPageTest.swift; sourceTree = "<group>"; };
+		CE1190B1233BAE3E0065005F /* firstPage.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = firstPage.json; sourceTree = "<group>"; };
 		CE6D373E2327EEFC00D080C2 /* TableModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableModel.swift; sourceTree = "<group>"; };
 		CE8E68582328D8D500D8DE97 /* CollectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionModel.swift; sourceTree = "<group>"; };
 		CE8E685A2328F09A00D8DE97 /* DownloadImgModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadImgModel.swift; sourceTree = "<group>"; };
@@ -81,6 +103,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		CE1190A0233BADA10065005F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -91,6 +120,7 @@
 				CE6D373C2327EAC700D080C2 /* collectionView */,
 				CE6D373B2327EA9C00D080C2 /* tableView */,
 				B18B969123181885007BB1B8 /* Ibtikar */,
+				CE1190A4233BADA10065005F /* IbtikarTests */,
 				B18B969023181885007BB1B8 /* Products */,
 				BB576D55F27C2F74FFCB2733 /* Pods */,
 				CC3152BBD21F8FEABBAA9CDB /* Frameworks */,
@@ -101,6 +131,7 @@
 			isa = PBXGroup;
 			children = (
 				B18B968F23181885007BB1B8 /* Ibtikar.app */,
+				CE1190A3233BADA10065005F /* IbtikarTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -135,6 +166,18 @@
 				FE2D412D86583FEEFBA1D1A7 /* Pods_Ibtikar.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		CE1190A4233BADA10065005F /* IbtikarTests */ = {
+			isa = PBXGroup;
+			children = (
+				CE1190B1233BAE3E0065005F /* firstPage.json */,
+				CE1190B0233BAE3E0065005F /* LoadFirstPageTest.swift */,
+				CE1190AF233BAE3E0065005F /* LoadMoreTest.swift */,
+				CE1190AE233BAE3E0065005F /* twoPages.json */,
+				CE1190A7233BADA10065005F /* Info.plist */,
+			);
+			path = IbtikarTests;
 			sourceTree = "<group>";
 		};
 		CE6D373B2327EA9C00D080C2 /* tableView */ = {
@@ -216,18 +259,41 @@
 			productReference = B18B968F23181885007BB1B8 /* Ibtikar.app */;
 			productType = "com.apple.product-type.application";
 		};
+		CE1190A2233BADA10065005F /* IbtikarTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CE1190AA233BADA10065005F /* Build configuration list for PBXNativeTarget "IbtikarTests" */;
+			buildPhases = (
+				CE11909F233BADA10065005F /* Sources */,
+				CE1190A0233BADA10065005F /* Frameworks */,
+				CE1190A1233BADA10065005F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				CE1190A9233BADA10065005F /* PBXTargetDependency */,
+			);
+			name = IbtikarTests;
+			productName = IbtikarTests;
+			productReference = CE1190A3233BADA10065005F /* IbtikarTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		B18B968723181884007BB1B8 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1010;
+				LastSwiftUpdateCheck = 1030;
 				LastUpgradeCheck = 1010;
 				ORGANIZATIONNAME = "Esraa Mohamed";
 				TargetAttributes = {
 					B18B968E23181885007BB1B8 = {
 						CreatedOnToolsVersion = 10.1;
+					};
+					CE1190A2233BADA10065005F = {
+						CreatedOnToolsVersion = 10.3;
+						LastSwiftMigration = 1030;
+						TestTargetID = B18B968E23181885007BB1B8;
 					};
 				};
 			};
@@ -245,6 +311,7 @@
 			projectRoot = "";
 			targets = (
 				B18B968E23181885007BB1B8 /* Ibtikar */,
+				CE1190A2233BADA10065005F /* IbtikarTests */,
 			);
 		};
 /* End PBXProject section */
@@ -254,10 +321,21 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE1190B8233BAE9C0065005F /* firstPage.json in Resources */,
+				CE1190B9233BAE9C0065005F /* twoPages.json in Resources */,
 				CE906A6C232A79EC00691AFE /* PeopleTableViewCell.xib in Resources */,
 				B18B96A02318188C007BB1B8 /* LaunchScreen.storyboard in Resources */,
 				B18B969D2318188C007BB1B8 /* Assets.xcassets in Resources */,
 				B18B969823181885007BB1B8 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CE1190A1233BADA10065005F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CE1190B3233BAE3E0065005F /* twoPages.json in Resources */,
+				CE1190B6233BAE3E0065005F /* firstPage.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -336,7 +414,24 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		CE11909F233BADA10065005F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CE1190B4233BAE3E0065005F /* LoadMoreTest.swift in Sources */,
+				CE1190B5233BAE3E0065005F /* LoadFirstPageTest.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		CE1190A9233BADA10065005F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B18B968E23181885007BB1B8 /* Ibtikar */;
+			targetProxy = CE1190A8233BADA10065005F /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		B18B969623181885007BB1B8 /* Main.storyboard */ = {
@@ -510,6 +605,49 @@
 			};
 			name = Release;
 		};
+		CE1190AB233BADA10065005F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = IbtikarTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.EGK.IbtikarTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Ibtikar.app/Ibtikar";
+			};
+			name = Debug;
+		};
+		CE1190AC233BADA10065005F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = IbtikarTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.EGK.IbtikarTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Ibtikar.app/Ibtikar";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -527,6 +665,15 @@
 			buildConfigurations = (
 				B18B96A52318188C007BB1B8 /* Debug */,
 				B18B96A62318188C007BB1B8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CE1190AA233BADA10065005F /* Build configuration list for PBXNativeTarget "IbtikarTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CE1190AB233BADA10065005F /* Debug */,
+				CE1190AC233BADA10065005F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
