@@ -19,6 +19,7 @@
 		B19E7768231C0FE8008197EB /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19E7763231C0FE7008197EB /* TableViewController.swift */; };
 		B19E7769231C0FE8008197EB /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19E7764231C0FE8008197EB /* TableViewCell.swift */; };
 		BA86DD4A1AD1313BDC84620B /* Pods_Ibtikar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE2D412D86583FEEFBA1D1A7 /* Pods_Ibtikar.framework */; };
+		CE1190C1233BBD3F0065005F /* IbtikarUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1190C0233BBD3F0065005F /* IbtikarUITests.swift */; };
 		CE6D373F2327EEFC00D080C2 /* TableModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6D373E2327EEFC00D080C2 /* TableModel.swift */; };
 		CE8E68592328D8D500D8DE97 /* CollectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8E68582328D8D500D8DE97 /* CollectionModel.swift */; };
 		CE8E685B2328F09A00D8DE97 /* DownloadImgModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8E685A2328F09A00D8DE97 /* DownloadImgModel.swift */; };
@@ -37,6 +38,16 @@
 		CEBBDC5A232FDBD8009568B8 /* DownloadViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBBDC59232FDBD8009568B8 /* DownloadViewProtocol.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		CE1190C3233BBD3F0065005F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B18B968723181884007BB1B8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B18B968E23181885007BB1B8;
+			remoteInfo = Ibtikar;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		675F10BD28C7FCC73BB66DF5 /* Pods-Ibtikar.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ibtikar.release.xcconfig"; path = "Target Support Files/Pods-Ibtikar/Pods-Ibtikar.release.xcconfig"; sourceTree = "<group>"; };
 		B18B968F23181885007BB1B8 /* Ibtikar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ibtikar.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -53,6 +64,9 @@
 		B19E7763231C0FE7008197EB /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		B19E7764231C0FE8008197EB /* TableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		BFA4A0C254CA42D8D56AB7F1 /* Pods-Ibtikar.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ibtikar.debug.xcconfig"; path = "Target Support Files/Pods-Ibtikar/Pods-Ibtikar.debug.xcconfig"; sourceTree = "<group>"; };
+		CE1190BE233BBD3E0065005F /* IbtikarUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IbtikarUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		CE1190C0233BBD3F0065005F /* IbtikarUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IbtikarUITests.swift; sourceTree = "<group>"; };
+		CE1190C2233BBD3F0065005F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CE6D373E2327EEFC00D080C2 /* TableModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableModel.swift; sourceTree = "<group>"; };
 		CE8E68582328D8D500D8DE97 /* CollectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionModel.swift; sourceTree = "<group>"; };
 		CE8E685A2328F09A00D8DE97 /* DownloadImgModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadImgModel.swift; sourceTree = "<group>"; };
@@ -81,6 +95,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		CE1190BB233BBD3E0065005F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -91,6 +112,7 @@
 				CE6D373C2327EAC700D080C2 /* collectionView */,
 				CE6D373B2327EA9C00D080C2 /* tableView */,
 				B18B969123181885007BB1B8 /* Ibtikar */,
+				CE1190BF233BBD3F0065005F /* IbtikarUITests */,
 				B18B969023181885007BB1B8 /* Products */,
 				BB576D55F27C2F74FFCB2733 /* Pods */,
 				CC3152BBD21F8FEABBAA9CDB /* Frameworks */,
@@ -101,6 +123,7 @@
 			isa = PBXGroup;
 			children = (
 				B18B968F23181885007BB1B8 /* Ibtikar.app */,
+				CE1190BE233BBD3E0065005F /* IbtikarUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -135,6 +158,15 @@
 				FE2D412D86583FEEFBA1D1A7 /* Pods_Ibtikar.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		CE1190BF233BBD3F0065005F /* IbtikarUITests */ = {
+			isa = PBXGroup;
+			children = (
+				CE1190C0233BBD3F0065005F /* IbtikarUITests.swift */,
+				CE1190C2233BBD3F0065005F /* Info.plist */,
+			);
+			path = IbtikarUITests;
 			sourceTree = "<group>";
 		};
 		CE6D373B2327EA9C00D080C2 /* tableView */ = {
@@ -216,18 +248,40 @@
 			productReference = B18B968F23181885007BB1B8 /* Ibtikar.app */;
 			productType = "com.apple.product-type.application";
 		};
+		CE1190BD233BBD3E0065005F /* IbtikarUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CE1190C7233BBD3F0065005F /* Build configuration list for PBXNativeTarget "IbtikarUITests" */;
+			buildPhases = (
+				CE1190BA233BBD3E0065005F /* Sources */,
+				CE1190BB233BBD3E0065005F /* Frameworks */,
+				CE1190BC233BBD3E0065005F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				CE1190C4233BBD3F0065005F /* PBXTargetDependency */,
+			);
+			name = IbtikarUITests;
+			productName = IbtikarUITests;
+			productReference = CE1190BE233BBD3E0065005F /* IbtikarUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		B18B968723181884007BB1B8 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1010;
+				LastSwiftUpdateCheck = 1030;
 				LastUpgradeCheck = 1010;
 				ORGANIZATIONNAME = "Esraa Mohamed";
 				TargetAttributes = {
 					B18B968E23181885007BB1B8 = {
 						CreatedOnToolsVersion = 10.1;
+					};
+					CE1190BD233BBD3E0065005F = {
+						CreatedOnToolsVersion = 10.3;
+						TestTargetID = B18B968E23181885007BB1B8;
 					};
 				};
 			};
@@ -245,6 +299,7 @@
 			projectRoot = "";
 			targets = (
 				B18B968E23181885007BB1B8 /* Ibtikar */,
+				CE1190BD233BBD3E0065005F /* IbtikarUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -258,6 +313,13 @@
 				B18B96A02318188C007BB1B8 /* LaunchScreen.storyboard in Resources */,
 				B18B969D2318188C007BB1B8 /* Assets.xcassets in Resources */,
 				B18B969823181885007BB1B8 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CE1190BC233BBD3E0065005F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -336,7 +398,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		CE1190BA233BBD3E0065005F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CE1190C1233BBD3F0065005F /* IbtikarUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		CE1190C4233BBD3F0065005F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B18B968E23181885007BB1B8 /* Ibtikar */;
+			targetProxy = CE1190C3233BBD3F0065005F /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		B18B969623181885007BB1B8 /* Main.storyboard */ = {
@@ -510,6 +588,44 @@
 			};
 			name = Release;
 		};
+		CE1190C5233BBD3F0065005F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = IbtikarUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.EGK.IbtikarUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Ibtikar;
+			};
+			name = Debug;
+		};
+		CE1190C6233BBD3F0065005F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = IbtikarUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.EGK.IbtikarUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Ibtikar;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -527,6 +643,15 @@
 			buildConfigurations = (
 				B18B96A52318188C007BB1B8 /* Debug */,
 				B18B96A62318188C007BB1B8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CE1190C7233BBD3F0065005F /* Build configuration list for PBXNativeTarget "IbtikarUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CE1190C5233BBD3F0065005F /* Debug */,
+				CE1190C6233BBD3F0065005F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

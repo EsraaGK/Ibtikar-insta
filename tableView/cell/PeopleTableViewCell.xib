@@ -27,6 +27,7 @@
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OVp-MX-F9C">
                         <rect key="frame" x="98" y="46" width="266" height="20.5"/>
+                        <accessibility key="accessibilityConfiguration" identifier="CellLable"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -41,6 +42,9 @@
                     <constraint firstAttribute="trailing" secondItem="OVp-MX-F9C" secondAttribute="trailing" constant="8" id="xNX-ZC-KNW"/>
                 </constraints>
             </tableViewCellContentView>
+            <accessibility key="accessibilityConfiguration" identifier="TableViewCell">
+                <bool key="isElement" value="YES"/>
+            </accessibility>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="ActorNameLable" destination="OVp-MX-F9C" id="FCe-md-M22"/>

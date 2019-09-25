@@ -20,6 +20,7 @@ class PeopleTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        self.accessibilityIdentifier = "TableViewCell"
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

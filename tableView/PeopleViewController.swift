@@ -40,7 +40,7 @@ class PeopleViewController: UIViewController, UITextFieldDelegate, UITableViewDe
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+    
         presenter = PeoplePresenter(ViewObj: self , ModelObj: TableModel())
         
         let nib = UINib(nibName: "PeopleTableViewCell", bundle: Bundle.main)
@@ -50,6 +50,7 @@ class PeopleViewController: UIViewController, UITextFieldDelegate, UITableViewDe
         peopleTableView.dataSource=self
         searchTextField.delegate=self
         
+        peopleTableView.accessibilityIdentifier = "PeopleTableView"
         
         let apiPageNo = presenter!.getApiPageNo()
         presenter!.getObjects(number: apiPageNo,urlString: peopleURL){

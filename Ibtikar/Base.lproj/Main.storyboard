@@ -204,6 +204,9 @@
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <textInputTraits key="textInputTraits"/>
                                 </textField>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="accessibilityIdentifier" value="PeopleTableView"/>
+                                </userDefinedRuntimeAttributes>
                             </tableView>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="JKq-Dn-4cA">
                                 <rect key="frame" x="0.0" y="64" width="375" height="30"/>
@@ -240,10 +243,10 @@
             </objects>
             <point key="canvasLocation" x="824.79999999999995" y="-949.47526236881572"/>
         </scene>
-        <!--Root View Controller-->
+        <!--Actors-->
         <scene sceneID="3ep-su-rYT">
             <objects>
-                <tableViewController id="kqc-iK-769" customClass="TableViewController" customModule="Ibtikar" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController title="Actors" id="kqc-iK-769" customClass="TableViewController" customModule="Ibtikar" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="GbN-2k-Bss">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
