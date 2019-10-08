@@ -7,21 +7,21 @@
 //
 
 import Foundation
-class ApiObj {
+class ApiObj: Decodable {
     var   page : Int?
-    var results :[Actor]? = Array() //
+    var results :[Actor]? //
 }
 
-class Actor {
+class Actor: Decodable {
     var   profile_path : String?
     var  adult : Bool?
     var   id :Int?
     var   name : String?
    var popularity : Double?
-    var  known_for :Array? = Array<Film>() //
+    var  known_for :Array<Film>? //
 }
 
-class Film{
+class Film: Decodable{
     var id : Int? //
     var poster_path : String? //
     var  title : String? //

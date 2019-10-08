@@ -31,21 +31,10 @@ class PeopleTableViewCell: UITableViewCell {
     func configure(actorOBJ :Actor){
        // print(actorOBJ.name!)
         ActorNameLable.text = actorOBJ.name! //as! String
-        
-        peopleImageView.sd_setImage(with: URL(string:actorOBJ.profile_path!), placeholderImage: UIImage(named: "Reverb"))
-//        peopleTableViewCellModel.loadImg(stringUrl: actorOBJ.profile_path!, completionHandler: {
-//            myData in
-//            if let data = myData{
-//                DispatchQueue.main.async {
-//
-//                    self.peopleImageView.image = UIImage(data: data)
-//
-//                }
-//            }else{
-//                self.peopleImageView.image = UIImage(named:"Reverb")
-//            }//else
-//        })//completion
-      
+        guard let path=actorOBJ.profile_path else {return}
+        var fullpath = "https://image.tmdb.org/t/p/w500"+path
+        peopleImageView.sd_setImage(with: URL(string:fullpath), placeholderImage: UIImage(named: "Reverb"))
+        print(fullpath)
     }
     
 }
