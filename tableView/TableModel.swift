@@ -7,6 +7,8 @@
 //
 
 import Foundation
+import Alamofire
+
 class TableModel: PeopleTableViewModelProtocol{
     
     var results = [Actor]()
@@ -73,6 +75,11 @@ class TableModel: PeopleTableViewModelProtocol{
         
         let urlApi = urlString + "&page=\(pnumber)"
         
+//        Alamofire.request(urlApi)
+//            .responseJSON { response in
+//                // do stuff with the JSON or error
+//        }
+
         if let url = URL(string:urlApi ) {
             // Create Request
             let request = URLRequest(url: url)

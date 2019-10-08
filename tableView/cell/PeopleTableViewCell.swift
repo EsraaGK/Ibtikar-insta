@@ -29,7 +29,7 @@ class PeopleTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     func configure(actorOBJ :Actor){
-        print(actorOBJ.name!)
+       // print(actorOBJ.name!)
         ActorNameLable.text = actorOBJ.name! //as! String
         
         peopleImageView.sd_setImage(with: URL(string:actorOBJ.profile_path!), placeholderImage: UIImage(named: "Reverb"))
