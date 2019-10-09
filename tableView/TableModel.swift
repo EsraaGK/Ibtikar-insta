@@ -77,7 +77,7 @@ class TableModel: PeopleTableViewModelProtocol{
         
         
         
-        AF.request(urlApi)
+        Alamofire.request(urlApi)
             .responseData{ response in
 
                 // do stuff with the JSON or error

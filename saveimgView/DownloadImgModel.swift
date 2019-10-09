@@ -22,55 +22,11 @@ class DownloadImgModel: DownloadModelProtocol{
     }
     
     func downloadImg(completionHandler: @escaping (Data?) -> Void) {
-                if stringUrl != "noPath" {
-                    let url = URL(string: stringUrl)!
-                    let request = URLRequest(url: url)
-                    let task = URLSession.shared.dataTask(with: request, completionHandler: { adata, response, error in
-                        if let data = adata{
-                            print("this is data \(data)")
-                            completionHandler(data)
-                        }else{
-                            completionHandler(nil)
-                        }
-        
-                    })
-                    task.resume()
-        
-                }else{// nopath
-                    completionHandler(nil)
-                }
-    }
-    
-    
-    
-//    func loadImg(stringURL :String , completionHandler:@escaping (Data?)->Void){
-//        if stringURL != "noPath" {
-//            let url = URL(string: stringURL)!
-//            let request = URLRequest(url: url)
-//            let task = URLSession.shared.dataTask(with: request, completionHandler: { adata, response, error in
-//                if let data = adata{
-//                    print("this is data \(data)")
-//                    completionHandler(data)
-//                }else{
-//                    completionHandler(nil)
-//                }
-//
-//            })
-//            task.resume()
-//
-//        }else{// nopath
-//            completionHandler(nil)
-//        }
-    
-    //}
-    
-    func downloadImg(StringUrl :String ,completionHandler:(Data?)->Void){
-        if let url = URL(string: StringUrl),
+        let fullpath = "https://image.tmdb.org/t/p/w500" + stringUrl
+        if let url = URL(string: fullpath),
             let data = try? Data(contentsOf: url){
             completionHandler (data)
         }
-        
-        
     }
     
     

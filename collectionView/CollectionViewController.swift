@@ -52,17 +52,10 @@ class CollectionViewController: UICollectionViewController, ActorCollectionViewP
         } else if (kind == UICollectionView.elementKindSectionHeader) {
             let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "myheader", for: indexPath)
             // Customize headerView here
-            ( headerView.viewWithTag(1) as! UIImageView).sd_setImage(with: URL(string:presenter!.getActorProfilePath()), placeholderImage: UIImage(named: "Reverb"))
+            let fullpath = "https://image.tmdb.org/t/p/w500"+presenter!.getActorProfilePath()
+
+            ( headerView.viewWithTag(1) as! UIImageView).sd_setImage(with: URL(string: fullpath), placeholderImage: UIImage(named: "Reverb"))
             
-            //                if let myData = presenter!.loadImageForHeader( ){
-            //                    print(myData)
-            //                    DispatchQueue.main.async() {
-            //                        ( headerView.viewWithTag(1) as! UIImageView).image  = UIImage(data: myData)
-            //                    }
-            //
-            //                }else{
-            //                    ( headerView.viewWithTag(1) as! UIImageView).image = UIImage(named:"Reverb")
-            //                }
             
             (headerView.viewWithTag(2) as! UILabel).text = presenter!.getActorNameAt()
             (headerView.viewWithTag(3) as! UILabel).text = ("the popularity rate is \(presenter!.getActorPopularityAt())")
@@ -76,18 +69,9 @@ class CollectionViewController: UICollectionViewController, ActorCollectionViewP
         
         // Configure the cell
         
-        ( cell.viewWithTag(1) as! UIImageView).sd_setImage(with: URL(string:presenter!.getObjectForCell(index: indexPath.row)), placeholderImage: UIImage(named: "Reverb"))
-        //            if let myData = presenter!.loadImageForCellAt(index: indexPath.row){
-        //                DispatchQueue.main.async() {
-        //
-        //                    ( cell.viewWithTag(1) as! UIImageView).image  = UIImage(data: myData)
-        //                }
-        //
-        //            }else{
-        //                 ( cell.viewWithTag(1) as! UIImageView).image = UIImage(named:"Reverb")
-        //            }
-        //
-        
+        let fullpath = "https://image.tmdb.org/t/p/w500" + presenter!.getObjectForCell(index: indexPath.row)
+        ( cell.viewWithTag(1) as! UIImageView).sd_setImage(with: URL(string:fullpath), placeholderImage: UIImage(named: "Reverb"))
+     
         return cell
     }
     

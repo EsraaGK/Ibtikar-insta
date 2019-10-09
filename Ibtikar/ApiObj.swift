@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import ObjectMapper
 class ApiObj: Decodable {
     var   page : Int?
     var results :[Actor]? //
@@ -25,21 +26,32 @@ class Film: Decodable{
     var id : Int? //
     var poster_path : String? //
     var  title : String? //
-    
-//    
-//     var original_title : String?
-//    var  adult:Bool?
-//  var overview : String?
-// var release_date : String?
-//   
-//    var genre_ids : Array<Int>?
-//   var media_type : String?
-//     var original_language : String?
-// 
-//   var backdrop_path : String?
-//    var popularity : Double?
-//   var vote_count : Int?
-//    var video :Bool?
-//    var  vote_average : Double?
 
+}
+
+
+class Picture: Mappable {
+    var profiles:[Path]?
+    
+    required init?(map: Map) {
+        
+    }
+    
+     func mapping(map: Map) {
+        profiles         <- map["profiles"]
+       
+    }
+}
+class Path: Mappable {
+var file_path: String?
+    
+    required init?(map: Map) {
+        
+    }
+    
+    func mapping(map: Map) {
+        file_path       <- map["file_path"]
+    }
+    
+    
 }
