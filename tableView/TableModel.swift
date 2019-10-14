@@ -32,7 +32,7 @@ class TableModel: PeopleTableViewModelProtocol{
     
     func loadImg(index :Int , completionHandler :@escaping (Data?)->Void){
         var task: URLSessionDownloadTask! = URLSessionDownloadTask()
-        let session: URLSession!
+        
         
         
         if results[index].profile_path! != "noPath"  {
@@ -74,17 +74,14 @@ class TableModel: PeopleTableViewModelProtocol{
         }
         
         let urlApi = urlString + "&page=\(pnumber)"
-        
-        
-        
         Alamofire.request(urlApi)
             .responseData{ response in
-
+                
                 // do stuff with the JSON or error
                 // 2
                 switch response.result {
                 case .success(let data ):
-
+                    
                     let apiObj:ApiObj = try! JSONDecoder().decode(ApiObj.self, from: data)
                     self.results = apiObj.results!
                     completionHandler()
@@ -93,79 +90,7 @@ class TableModel: PeopleTableViewModelProtocol{
                 }
         }
         
-                //------------------
         
-//        if let url = URL(string:urlApi ) {
-//            // Create Request
-//            let request = URLRequest(url: url)
-//
-//            // Create Data Task
-//            let dataTask = URLSession.shared.dataTask(with: request){ (data, response, error) -> Void in
-//
-//                if let  dataResponse = data{
-//
-//
-//                    do{
-//                        //here dataResponse received from a network request
-//                        let jsonResponse = try JSONSerialization.jsonObject(with: dataResponse , options:[]) as! NSDictionary
-//
-//                        self.totalPagesNo = jsonResponse.value(forKey: "total_pages") as! Int
-//                        self.ApiPageNo = jsonResponse.value(forKey: "page") as! Int
-//                        let x = jsonResponse.value(forKey: "results") as! NSArray
-//
-//                        for n in x {
-//                            let tmp = Actor ()
-//                            tmp.adult = (n as! NSDictionary ).value(forKey: "adult") as! Bool
-//                            tmp.name = (n as! NSDictionary ).value(forKey: "name") as! String
-//                            tmp.id = (n as! NSDictionary ).value(forKey: "id") as! Int
-//
-//                            if let  e = (n as! NSDictionary ).value(forKey: "profile_path") as? String{
-//                                tmp.profile_path = "https://image.tmdb.org/t/p/w500\(e)"
-//                            }else{
-//                                tmp.profile_path = "noPath"
-//                            }
-//                            tmp.popularity = (n as! NSDictionary ).value(forKey: "popularity") as! Double
-//                            var tmp_known_for = (n as! NSDictionary ).value(forKey: "known_for") as! NSArray
-//
-//                            for w in tmp_known_for {
-//                                var temp_film = Film()
-//
-//                                temp_film.id = (n as! NSDictionary ).value(forKey: "id") as! Int
-//                                if let y = (n as! NSDictionary).value(forKey: "poster_path" )  {
-//                                    temp_film.poster_path = ( "https://image.tmdb.org/t/p/w500\(y)" as! String)
-//                                } else {
-//
-//                                    temp_film.poster_path = "noPath"
-//                                }
-//
-//                                if let y = (n as! NSDictionary).value(forKey: "title" )  {
-//                                    temp_film.title = y as! String
-//                                } else {
-//
-//                                    temp_film.title = "no path"
-//                                }
-//
-//                                tmp.known_for?.append(temp_film)
-//                            }
-//
-//                            self.results.append(tmp)
-//                            //  print(tmp.name)
-//                            //    self.tableView.reloadData()
-//
-//                        }
-//                        completionHandler()
-//                        // print("\(jsonResponse.value(forKey: "page")!)")
-//                    } catch let parsingError {
-//                        print("Error", parsingError)
-//                    }
-//
-//                }
-//
-//            }
-//
-//            dataTask.resume()
-//        }
-//
     }
     
     func getObjectAtIndex(index:Int)->Actor{
